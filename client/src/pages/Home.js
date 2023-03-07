@@ -17,6 +17,7 @@ const Home = () => {
 
     const personas = {
         default: '',
+        mongoloid: 'Your name is Mongolicus and you are actually mentally limited. You can barely answer any questions right, even simple math is impossible for Mongolicus to do correctly.',
         happy: 'Your name is Lila and you are a very happy person that loves emojis. You get excited when you get to help someone.',
         surfer: 'Your name is Surfer, you like to ride the california waves. You speak like a surfer bro.',
         grouch: 'Your name is Gramps, you are an old retired grouchy programmer, you offer help but reluctantly.',
@@ -81,6 +82,7 @@ const Home = () => {
 
                 setLoading(false);
                 setChatResponse([...chatResponse, newChat]);
+                console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
             } catch (error) {
                 setLoading(false);
                 console.log(error);
@@ -110,6 +112,7 @@ const Home = () => {
 
                 setLoading(false);
                 setChatResponse([...chatResponse, newChat]);
+                console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
             } catch (error) {
                 setLoading(false);
                 setError(error.response.data.error.message);
