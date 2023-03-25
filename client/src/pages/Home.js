@@ -210,7 +210,7 @@ const Home = () => {
     <Box sx={{ p: 2 }}>
       <Navbar showSettings={showSettings} setShowSettings={setShowSettings}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {personas}
+          {persona}
         </Typography>
         <IconButton color="inherit">
           <Icon>reload</Icon>
