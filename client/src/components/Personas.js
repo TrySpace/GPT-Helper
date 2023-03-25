@@ -1,20 +1,18 @@
-const Personas = ({ personaValue, setPersona, personaKey, persona }) => {
-    return (
-        <>
-            <input
-                type='radio'
-                name={personaKey}
-                value={personaValue}
-                checked={persona === personaValue}
-                onChange={(event) => setPersona(event.target.value)}
-                className='mg-top-sm'
-            />
-            <label htmlFor={personaKey} className='mg-left-sm'>
-                {personaKey}
-            </label>
-            <br />
-        </>
-    );
-};
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 
-export default Personas;
+const Personas = ({ personaValue, setPersona, personaKey, persona }) => {
+  return (
+    <RadioGroup name={personaKey}>
+      <FormControlLabel
+        value={personaValue}
+        control={<Radio />}
+        label={personaKey}
+        checked={persona === personaValue}
+        onChange={(event) => setPersona(event.target.value)}
+        className="mg-top-sm"
+      />
+    </RadioGroup>
+  )
+}
+
+export default Personas

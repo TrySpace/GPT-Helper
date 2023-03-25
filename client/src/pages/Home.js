@@ -104,7 +104,6 @@ const Home = () => {
 
         setLoading(false)
         setChatResponse([...chatResponse, newChat])
-        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
       } catch (error) {
         setLoading(false)
         console.log(error)
@@ -198,6 +197,7 @@ const Home = () => {
     setThreadSize,
     setTemperature,
     setChatResponse,
+    selectedModel,
     setSelectedModel,
   }
 
