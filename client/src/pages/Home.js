@@ -6,12 +6,12 @@ import Navbar from '../components/Navbar'
 import Prompt from '../components/Prompt'
 import PromptController from '../components/PromptController'
 import Error from '../components/Error'
-import { Box } from '@mui/material/Box'
-import { Typography } from '@mui/material/Typography'
-import { Grid } from '@mui/material/Grid'
-import { IconButton } from '@mui/material/IconButton'
-import { Alert } from '@mui/material/Alert'
-import { Icon } from '@mui/material/Icon'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import Alert from '@mui/material/Alert'
+import Icon from '@mui/material/Icon'
 
 let savedConversation = JSON.parse(localStorage.getItem('conversation'))
 if (savedConversation) console.log('localstorage', savedConversation)
