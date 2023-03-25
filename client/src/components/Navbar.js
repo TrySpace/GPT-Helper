@@ -1,7 +1,7 @@
 import { FaCog } from 'react-icons/fa'
 
-import { AppBar } from '@mui/material/AppBar'
-import { Toolbar } from '@mui/material/Toolbar'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
 
 const Navbar = ({ setShowSettings, showSettings, children }) => {
   return (
