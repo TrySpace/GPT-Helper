@@ -26,12 +26,11 @@ export async function useGPTApi({
 }> {
   const options = {
     headers: {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
       'Content-Type': 'application/json',
     },
   }
-
-  console.log(`🚀 ~ onSubmit ~ selectedModel:`, selectedModel)
   if (selectedModel === 'gpt-3.5-turbo') {
     // Sets the prompt with instructions.
     const promptOptions = `Respond to the user in markdown. ${personaText} `
@@ -41,6 +40,7 @@ export async function useGPTApi({
       messages: [
         {
           role: 'user',
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           content: `${promptOptions}\n${conversation}\n${question}\n`,
         },
       ],
@@ -49,32 +49,31 @@ export async function useGPTApi({
       max_tokens: Number(tokens),
       temperature: Number(temperature),
     }
-    console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
-
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         promptData,
         options
       )
-      console.log(`🚀 ~ onSubmit ~ response:`, response)
       const newChat: ChatResponse = {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         botResponse: response.data.choices[0].message.content,
         promptQuestion: question,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         totalTokens: response.data.usage.total_tokens,
       }
-      console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
 
       return { chatResponse: [...chatResponse, newChat] }
     } catch (err) {
-      console.log(err)
       // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       return { error: err?.response?.data?.error.message }
     }
   } else {
     const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${personaText} STOP `
     const promptData = {
       model: selectedModel,
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
       top_p: Number(nucleus),
       max_tokens: Number(tokens),
@@ -84,8 +83,6 @@ export async function useGPTApi({
       logprobs: null,
       stop: ['STOP', 'User:'],
     }
-    console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
-
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/completions',
@@ -94,8 +91,10 @@ export async function useGPTApi({
       )
       console.log(`🚀 ~ onSubmit ~ response:`, response)
       const newChat = {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         botResponse: response.data.choices[0].text,
         promptQuestion: question,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         totalTokens: response.data.usage.total_tokens,
       }
       console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
@@ -103,6 +102,7 @@ export async function useGPTApi({
       return { chatResponse: [...chatResponse, newChat] }
     } catch (err) {
       // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       return { error: err?.response?.data?.error.message }
     }
   }
