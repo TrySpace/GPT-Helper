@@ -26,7 +26,15 @@ const convoStore = localStorage.getItem('conversation')
 let savedConversation = JSON.parse(convoStore)
 if (savedConversation) console.log('localstorage', savedConversation)
 
-const Home = ({ showSettings }: { showSettings: boolean }) => {
+const Home = ({
+  showSettings,
+  setPersona,
+  personaText,
+}: {
+  showSettings: boolean
+  personaText: string
+  setPersona: (persona: string) => void
+}) => {
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
   const [error, setError] = useState('')
@@ -36,7 +44,6 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
   const [tokens, setTokens] = useState(512)
   const [nucleus, setNucleus] = useState(0.5)
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo')
-  const [persona, setPersona] = useState(PERSONAS.default)
   const [threadSize, setThreadSize] = useState(3)
 
   // Values for Prompt
@@ -59,7 +66,7 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
 
     if (selectedModel === 'gpt-3.5-turbo') {
       // Sets the prompt with instructions.
-      const promptOptions = `Respond to the user in markdown. ${persona} `
+      const promptOptions = `Respond to the user in markdown. ${personaText} `
 
       const promptData = {
         model: 'gpt-3.5-turbo',
@@ -96,7 +103,7 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
         setError(error?.response?.data?.error.message)
       }
     } else {
-      const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP `
+      const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${personaText} STOP `
       const promptData = {
         model: selectedModel,
         prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
@@ -175,7 +182,7 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
     reset,
     tokens,
     nucleus,
-    persona,
+    personaText,
     personas: PERSONAS,
     threadSize,
     showSettings,

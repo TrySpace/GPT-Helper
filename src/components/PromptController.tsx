@@ -92,7 +92,7 @@ const PromptController = ({
   nucleus,
   setNucleus,
   setPersona,
-  persona,
+  personaText,
   personas,
   setThreadSize,
   threadSize,
@@ -121,7 +121,7 @@ const PromptController = ({
               key={index}
               personaValue={value}
               personaKey={key}
-              persona={persona}
+              personaText={personaText}
               setPersona={setPersona}
             />
           )
