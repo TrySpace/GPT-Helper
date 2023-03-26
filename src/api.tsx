@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { ChatResponse } from './Home'
+import { ChatResponse } from './pages/Home'
 
 export async function useGPTApi({
   question,

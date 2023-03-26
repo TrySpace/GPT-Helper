@@ -14,7 +14,7 @@ import Alert from '@mui/material/Alert'
 import Icon from '@mui/material/Icon'
 import { Persona, PERSONAS } from '../config/personas'
 import { Stack } from '@mui/material'
-import { useGPTApi } from './api'
+import { useGPTApi } from '../api'
 
 export interface ChatResponse {
   botResponse: string
