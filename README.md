@@ -42,3 +42,4 @@ Change `mode` to `light` in `index.tsx` for light mode
 - Make PromptController into sidebar or popover
 - Remember last persona & model
 - Tweak Response component layout?
+- Fix build not resolving correct paths
