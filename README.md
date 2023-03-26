@@ -1,4 +1,4 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, `@mui` and works on mobile.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile.
 
 ## GPT Helper
 
@@ -31,3 +31,14 @@ Then run `npm start` inside the root directory. It should automatically open the
 ### Personas
 
 You can edit `./config/personas.ts`
+
+### Customize
+
+Change `mode` to `light` in `index.js` for light mode
+
+## Todos
+
+- Toggle dark/light theme
+- Make PromptController into sidebar or popover
+- Remember last persona & model
+- Tweak Response component layout?
