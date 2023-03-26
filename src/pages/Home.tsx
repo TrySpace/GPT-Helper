@@ -11,7 +11,11 @@ import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
 import Response from '../components/Response'
 import { Persona } from '../config/personas'
-import { useConversation, useConvoStore } from '../hooks/conversation'
+import {
+  useChatResponse,
+  useThreadedConversation,
+  useConvoStore,
+} from '../hooks/conversation'
 
 export interface ChatResponse {
   botResponse: string
@@ -39,19 +43,14 @@ const Home = ({
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo')
   const [threadSize, setThreadSize] = useState(3)
 
-  const convoStore = useConvoStore()
-  console.log(`🚀 ~ convo:`, convoStore)
-
   // Values for Conversation
-  const [conversation, setConversation] = useConversation(
-    convoStore,
+  const [conversation, setConversation] = useThreadedConversation(
+    [],
     threadSize
   )
 
   // Values for Response
-  const [chatResponse, setChatResponse] = useState<ChatResponse[]>(
-    convoStore || []
-  )
+  const [chatResponse, setChatResponse] = useChatResponse('conversation')
 
   const onSubmit = async (event, question) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
