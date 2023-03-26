@@ -15,7 +15,6 @@ const Personas = ({ personaValue, setPersona, personaKey, persona }) => {
         label={personaKey}
         checked={persona === personaValue}
         onChange={handlePersonaChange}
-        className="mg-top-sm"
       />
     </RadioGroup>
   )
