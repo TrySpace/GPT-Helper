@@ -103,7 +103,12 @@ const PromptController = ({
   return (
     <Card
       className={`${showSettings ? 'settings' : 'settings hide'}`}
-      sx={{ overflowY: 'scroll', maxHeight: '80vh' }}
+      sx={{
+        overflowY: 'scroll',
+        maxHeight: '80vh',
+        maxWidth: '90vw',
+        p: 1,
+      }}
     >
       <form className="container-col ">
         <InputLabel htmlFor="temperature">{`Temperature: ${temperature}`}</InputLabel>

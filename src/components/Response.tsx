@@ -5,7 +5,7 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const Response = ({ botResponse, promptQuestion, totalTokens }) => {
   return (
-    <Card className="container-col bg-mid pad-lg mg-top-md mg-bot-md radius-sm shadow ">
+    <Card sx={{ p: 1 }}>
       <div className="container space">
         <h3>You: {promptQuestion}</h3>
         <h4 title="Total token cost">{totalTokens}</h4>

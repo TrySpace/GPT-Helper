@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton'
 import Alert from '@mui/material/Alert'
 import Icon from '@mui/material/Icon'
 import { PERSONAS } from '../config/personas'
+import { Stack } from '@mui/material'
 
 interface ChatResponse {
   botResponse: string
@@ -195,12 +196,8 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
   }
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Grid
-        container
-        spacing={2}
-        className="container-col auto mg-top-vlg radius-md size-lg "
-      >
+    <Box sx={{}}>
+      <Grid container spacing={1} sx={{ pb: '60px' }}>
         <Grid item xs={12}>
           {showError && <Alert severity="error">{error}</Alert>}
         </Grid>
@@ -208,16 +205,16 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
           {showError && <Error {...forError} />}
         </Grid>
         <Grid item xs={12}>
-          <div className="container-col ">
+          <Stack spacing={1}>
             {chatResponse &&
               chatResponse.map((item, index) => (
                 <Response {...item} key={index} />
               ))}
-          </div>
+          </Stack>
           <PromptController {...forPrompController} />
-          <PromptInput {...forPrompt} />
         </Grid>
       </Grid>
+      <PromptInput {...forPrompt} />
     </Box>
   )
 }
