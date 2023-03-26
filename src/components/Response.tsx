@@ -2,14 +2,26 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-import { Box, Card, Divider, Stack } from '@mui/material'
+import { Box, Card, Divider, Stack, Typography } from '@mui/material'
 
-const Response = ({ botResponse, promptQuestion, totalTokens }) => {
+interface ResponseProps {
+  botResponse: string
+  promptQuestion: string
+  totalTokens: string
+}
+
+const Response: React.FC<ResponseProps> = ({
+  botResponse,
+  promptQuestion,
+  totalTokens,
+}) => {
   return (
     <Card sx={{ p: 1 }}>
       <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
-        <h3>You: {promptQuestion}</h3>
-        <h4 title="Total token cost">{totalTokens}</h4>
+        <Typography variant="h3">You: {promptQuestion}</Typography>
+        <Typography variant="h4" title="Total token cost">
+          {totalTokens}
+        </Typography>
       </Stack>
       <Divider sx={{ py: 1 }} />
 
@@ -21,6 +33,7 @@ const Response = ({ botResponse, promptQuestion, totalTokens }) => {
             return !inline && match ? (
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 style={coldarkDark}
                 language={match[1]}
                 PreTag="div"
