@@ -223,7 +223,7 @@ const Home = () => {
   return (
     <Box sx={{ p: 2 }}>
       <Navbar showSettings={showSettings} setShowSettings={setShowSettings}>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="caption" component="div" sx={{ flexGrow: 1 }}>
           {persona}
         </Typography>
         <IconButton color="inherit">

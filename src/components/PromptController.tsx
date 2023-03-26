@@ -1,4 +1,12 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material'
 import Personas from './Personas'
 
 import React, { ChangeEvent } from 'react'
@@ -53,7 +61,7 @@ const ModelSelect = ({
   }
 
   return (
-    <FormControl variant="outlined" className="mg-top-md pad-sm">
+    <FormControl variant="outlined">
       <InputLabel id="model-select-label">Select a model</InputLabel>
       <Select
         labelId="model-select-label"
@@ -92,9 +100,12 @@ const PromptController = ({
 }) => {
   const personasArray = Object.entries(personas)
   return (
-    <div className={`${showSettings ? 'settings' : 'settings hide'}`}>
+    <Box
+      className={`${showSettings ? 'settings' : 'settings hide'}`}
+      sx={{ overflowY: 'scroll', maxHeight: '80vh' }}
+    >
       <form className="container-col ">
-        <label htmlFor="temperature">{`Temperature: ${temperature}`}</label>
+        <InputLabel htmlFor="temperature">{`Temperature: ${temperature}`}</InputLabel>
         <InputComponent
           type="range"
           name="temperature"
@@ -105,7 +116,7 @@ const PromptController = ({
           onChange={(event) => setTemperature(event.target.value)}
           title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
         />
-        <label>{`top_p: ${nucleus}`}</label>
+        <InputLabel>{`top_p: ${nucleus}`}</InputLabel>
         <InputComponent
           type="range"
           name="top_p"
@@ -116,7 +127,7 @@ const PromptController = ({
           onChange={(event) => setNucleus(event.target.value)}
           title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
         />
-        <label>{`Tokens: ${tokens}`}</label>
+        <InputLabel>{`Tokens: ${tokens}`}</InputLabel>
         <InputComponent
           type="range"
           name="tokens"
@@ -126,7 +137,7 @@ const PromptController = ({
           onChange={(event) => setTokens(event.target.value)}
           title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
         />
-        <label>{`Max Threads: ${threadSize}`}</label>
+        <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>
         <InputComponent
           type="range"
           name="tokens"
@@ -142,16 +153,18 @@ const PromptController = ({
           setSelectedModel={setSelectedModel}
         />
       </form>
-      <button
-        className="btn mg-top-md mg-left-sm"
+      <Button
+        className="btn"
         title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
         onClick={reset}
       >
         Reset
-      </button>
-      <h3 className="text-center mg-top-md">Personalities</h3>
+      </Button>
+      <Typography variant="h6" className="text-center mg-top-md">
+        Personalities
+      </Typography>
       <div className="underline-full mg-top-sm"></div>
-      <div className="mg-top-sm">
+      <Box className="mg-top-sm">
         {personasArray.map(([key, value], index) => {
           return (
             <Personas
@@ -163,8 +176,8 @@ const PromptController = ({
             />
           )
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
