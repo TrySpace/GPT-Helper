@@ -1,9 +1,11 @@
+import { Card } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-const Completion = ({ botResponse, promptQuestion, totalTokens }) => {
+
+const Response = ({ botResponse, promptQuestion, totalTokens }) => {
   return (
-    <div className="container-col bg-mid pad-lg mg-top-md mg-bot-md radius-sm shadow ">
+    <Card className="container-col bg-mid pad-lg mg-top-md mg-bot-md radius-sm shadow ">
       <div className="container space">
         <h3>You: {promptQuestion}</h3>
         <h4 title="Total token cost">{totalTokens}</h4>
@@ -31,8 +33,8 @@ const Completion = ({ botResponse, promptQuestion, totalTokens }) => {
           },
         }}
       />
-    </div>
+    </Card>
   )
 }
 
-export default Completion
+export default Response

@@ -13,7 +13,7 @@
 
   --bg-main: #292b31;
   /* --background-dark: #1f2025; */
-  /* --background-dark: #13161b; */
+  --background-dark: #13161b;
   --fc-light: #d1d3d7;
   --fc-fade: #767b87;
   --color-blend: #676c7a;
@@ -24,7 +24,7 @@
 }
 
 body {
-  background: var(--background-dark);
+  /* background: var(--background-dark); */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--fc-light);
@@ -109,7 +109,7 @@ textarea {
   border-left: solid 1px antiquewhite;
   border-top: solid 1px antiquewhite;
   border-bottom: solid 1px antiquewhite;
-  background-color: #333b40;
+  /* background-color: #333b40; */
   resize: none;
 }
 .input-text-lg {
@@ -246,7 +246,7 @@ img {
   box-shadow: var(--shadow);
   position: fixed;
   z-index: 10;
-  background-color: var(--background-dark);
+  /* background-color: var(--background-dark); */
 }
 .container {
   display: flex;
@@ -272,7 +272,7 @@ img {
 }
 
 .settings {
-  background-color: #292f35;
+  /* background-color: #292f35; */
   border-radius: 5px;
   padding: 1.5rem;
   position: fixed;

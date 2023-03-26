@@ -7,13 +7,11 @@ const Navbar = ({ setShowSettings, showSettings, children }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <nav className="navbar">
-          {children}
-          <FaCog
-            className="icon auto-right mg-right-lg pointer"
-            onClick={() => setShowSettings(!showSettings)}
-          />
-        </nav>
+        {children}
+        <FaCog
+          className="icon auto-right mg-right-lg pointer"
+          onClick={() => setShowSettings(!showSettings)}
+        />
       </Toolbar>
     </AppBar>
   )
