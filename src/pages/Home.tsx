@@ -11,17 +11,13 @@ import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
 import Response from '../components/Response'
 import { Persona } from '../config/personas'
+import { useConversation, useConvoStore } from '../hooks/conversation'
 
 export interface ChatResponse {
   botResponse: string
   promptQuestion: string
   totalTokens: string
 }
-
-const convoStore = localStorage.getItem('conversation')
-// @ts-ignore
-let savedConversation: ChatResponse[] = JSON.parse(convoStore)
-if (savedConversation) console.log('localstorage', savedConversation)
 
 const Home = ({
   showSettings,
@@ -43,12 +39,18 @@ const Home = ({
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo')
   const [threadSize, setThreadSize] = useState(3)
 
+  const convoStore = useConvoStore()
+  console.log(`🚀 ~ convo:`, convoStore)
+
   // Values for Conversation
-  const [conversation, setConversation] = useState<string[] | string>('')
+  const [conversation, setConversation] = useConversation(
+    convoStore,
+    threadSize
+  )
 
   // Values for Response
   const [chatResponse, setChatResponse] = useState<ChatResponse[]>(
-    savedConversation || []
+    convoStore || []
   )
 
   const onSubmit = async (event, question) => {
@@ -92,27 +94,6 @@ const Home = ({
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight, 555)
   }, [chatResponse])
-
-  useEffect(() => {
-    if (chatResponse.length > threadSize) {
-      const newArray = [...chatResponse]
-      console.log(`🚀 ~ useEffect ~ chatResponse:`, chatResponse)
-      newArray.splice(0, newArray.length - threadSize)
-      setConversation(
-        newArray.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`)
-      )
-      savedConversation = chatResponse
-      localStorage.setItem('conversation', JSON.stringify(savedConversation))
-    } else {
-      setConversation(
-        chatResponse.map(
-          (chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`
-        )
-      )
-      savedConversation = chatResponse
-      localStorage.setItem('conversation', JSON.stringify(savedConversation))
-    }
-  }, [chatResponse, threadSize])
 
   return (
     <Box sx={{}}>
