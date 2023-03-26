@@ -17,7 +17,6 @@ import { Persona, PERSONAS } from '../config/personas'
 
 interface InputProps {
   name: string
-  type: string
   value: string | number
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   min?: string
@@ -26,9 +25,8 @@ interface InputProps {
   title?: string
 }
 
-const InputComponent = ({
+const RangeComponent = ({
   name,
-  type,
   value,
   min,
   max,
@@ -38,7 +36,7 @@ const InputComponent = ({
 }: InputProps) => {
   return (
     <input
-      type={type}
+      type="range"
       name={name}
       value={value}
       min={min}
@@ -151,8 +149,7 @@ const PromptController = ({
             setSelectedModel={setSelectedModel}
           />
           <InputLabel htmlFor="temperature">{`Temperature: ${temperature}`}</InputLabel>
-          <InputComponent
-            type="range"
+          <RangeComponent
             name="temperature"
             value={temperature}
             min="0"
@@ -161,9 +158,8 @@ const PromptController = ({
             onChange={(event) => setTemperature(Number(event.target.value))}
             title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
           />
-          <InputLabel>{`top_p: ${nucleus}`}</InputLabel>
-          <InputComponent
-            type="range"
+          <InputLabel>{`Diversity: ${nucleus}`}</InputLabel>
+          <RangeComponent
             name="top_p"
             value={nucleus}
             min="0"
@@ -172,9 +168,8 @@ const PromptController = ({
             onChange={(event) => setNucleus(Number(event.target.value))}
             title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
           />
-          <InputLabel>{`Tokens: ${tokens}`}</InputLabel>
-          <InputComponent
-            type="range"
+          <InputLabel>{`Max Tokens: ${tokens}`}</InputLabel>
+          <RangeComponent
             name="tokens"
             value={tokens}
             min="5"
@@ -183,8 +178,7 @@ const PromptController = ({
             title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
           />
           <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>
-          <InputComponent
-            type="range"
+          <RangeComponent
             name="tokens"
             value={threadSize}
             min="1"
