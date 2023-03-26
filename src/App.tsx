@@ -6,12 +6,12 @@ import { theme } from './'
 import Navbar from './components/Navbar'
 import { inputGlobalStyles } from './config/globalStyles'
 import Home from './pages/Home'
-import { PERSONAS } from './config/personas'
+import { Persona, PERSONAS } from './config/personas'
 
 function App() {
   const [showSettings, setShowSettings] = useState(true)
-  const [persona, setPersona] = useState('default')
-  const [personaText, setPersonaText] = useState(PERSONAS.default)
+  const [persona, setPersona] = useState<Persona>('default')
+  const [personaText, setPersonaText] = useState<string>(PERSONAS.default)
 
   useEffect(() => {
     setPersonaText(PERSONAS[persona])

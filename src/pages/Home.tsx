@@ -64,6 +64,7 @@ const Home = ({
       },
     }
 
+    console.log(`🚀 ~ onSubmit ~ selectedModel:`, selectedModel)
     if (selectedModel === 'gpt-3.5-turbo') {
       // Sets the prompt with instructions.
       const promptOptions = `Respond to the user in markdown. ${personaText} `
@@ -81,6 +82,7 @@ const Home = ({
         max_tokens: Number(tokens),
         temperature: Number(temperature),
       }
+      console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
 
       try {
         const response = await axios.post(
@@ -88,11 +90,13 @@ const Home = ({
           promptData,
           options
         )
+        console.log(`🚀 ~ onSubmit ~ response:`, response)
         const newChat: ChatResponse = {
           botResponse: response.data.choices[0].message.content,
           promptQuestion: question,
           totalTokens: response.data.usage.total_tokens,
         }
+        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
 
         setLoading(false)
         setChatResponse([...chatResponse, newChat])
@@ -115,6 +119,7 @@ const Home = ({
         logprobs: null,
         stop: ['STOP', 'User:'],
       }
+      console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
 
       try {
         const response = await axios.post(
@@ -122,15 +127,16 @@ const Home = ({
           promptData,
           options
         )
+        console.log(`🚀 ~ onSubmit ~ response:`, response)
         const newChat = {
           botResponse: response.data.choices[0].text,
           promptQuestion: question,
           totalTokens: response.data.usage.total_tokens,
         }
+        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
 
         setLoading(false)
         setChatResponse([...chatResponse, newChat])
-        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
       } catch (err) {
         setLoading(false)
         // @ts-expect-error
