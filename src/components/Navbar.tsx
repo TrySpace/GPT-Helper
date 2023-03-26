@@ -1,4 +1,4 @@
-import { FaCog } from 'react-icons/fa'
+import { Icon, IconButton } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
@@ -17,10 +17,9 @@ const Navbar: React.FC<NavbarProps> = ({
     <AppBar position="sticky">
       <Toolbar>
         {children}
-        <FaCog
-          className="icon auto-right mg-right-lg pointer"
-          onClick={() => setShowSettings(!showSettings)}
-        />
+        <IconButton onClick={() => setShowSettings(!showSettings)}>
+          <Icon>settings</Icon>
+        </IconButton>
       </Toolbar>
     </AppBar>
   )

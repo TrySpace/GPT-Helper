@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Card,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -126,11 +127,10 @@ const PromptController = ({
         p: 1,
       }}
     >
-      <Typography variant="h6" className="text-center mg-top-md">
-        Personalities
-      </Typography>
-      <div className="underline-full mg-top-sm"></div>
-      <Box className="mg-top-sm">
+      <Stack>
+        <Typography variant="h6">Personalities</Typography>
+        <Divider />
+
         {personasArray.map(([key, value], index) => {
           return (
             <PersonaOption
@@ -142,7 +142,7 @@ const PromptController = ({
             />
           )
         })}
-      </Box>
+      </Stack>
 
       <form>
         <Stack spacing={1}>
@@ -196,9 +196,11 @@ const PromptController = ({
         </Stack>
       </form>
       <Button
-        className="btn"
         title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
         onClick={reset}
+        sx={{
+          width: '100%',
+        }}
       >
         Reset
       </Button>

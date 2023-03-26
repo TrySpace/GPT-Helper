@@ -15,7 +15,7 @@ const Error: React.FC<ErrorProps> = ({ error, setShowError }) => {
   }, [setShowError])
 
   return (
-    <Box className="container full bg-error pad-lg radius-sm mg-bot-sm content-center">
+    <Box>
       <Typography variant="h3">{error}</Typography>
     </Box>
   )
