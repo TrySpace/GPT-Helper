@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 
-import Response from '../components/Response'
-import Navbar from '../components/Navbar'
-import PromptInput from '../components/PromptInput'
-import PromptController from '../components/PromptController'
-import Error from '../components/Error'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
-import Alert from '@mui/material/Alert'
-import Icon from '@mui/material/Icon'
-import { Persona, PERSONAS } from '../config/personas'
 import { Stack } from '@mui/material'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+
 import { useGPTApi } from '../api'
+import Error from '../components/Error'
+import PromptController from '../components/PromptController'
+import PromptInput from '../components/PromptInput'
+import Response from '../components/Response'
+import { Persona } from '../config/personas'
 
 export interface ChatResponse {
   botResponse: string
@@ -47,10 +43,10 @@ const Home = ({
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo')
   const [threadSize, setThreadSize] = useState(3)
 
-  // Values for Prompt
+  // Values for Conversation
   const [conversation, setConversation] = useState<string[] | string>('')
 
-  // Values for Completion
+  // Values for Response
   const [chatResponse, setChatResponse] = useState<ChatResponse[]>(
     savedConversation || []
   )
@@ -77,6 +73,10 @@ const Home = ({
         setShowError(true)
       } else if (res.chatResponse) {
         setChatResponse(res.chatResponse)
+        setShowError(false)
+      } else {
+        setError('Unknown gpt api error')
+        setShowError(true)
       }
       setLoading(false)
     })
@@ -90,7 +90,7 @@ const Home = ({
 
   // Scrolls to bottom of the page as new content is created
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight)
+    window.scrollTo(0, document.body.scrollHeight, 555)
   }, [chatResponse])
 
   useEffect(() => {
@@ -114,33 +114,6 @@ const Home = ({
     }
   }, [chatResponse, threadSize])
 
-  // Props for Prompt component
-  const forPrompt = { onSubmit, loading }
-
-  // Props for PromptController
-  const forPrompController = {
-    reset,
-    tokens,
-    nucleus,
-    personaText,
-    threadSize,
-    showSettings,
-    setTokens,
-    setNucleus,
-    setPersona,
-    temperature,
-    setThreadSize,
-    setTemperature,
-    setChatResponse,
-    selectedModel,
-    setSelectedModel,
-  }
-
-  const forError = {
-    setShowError,
-    error,
-  }
-
   return (
     <Box sx={{}}>
       <Grid container spacing={1} sx={{ pb: '60px' }}>
@@ -148,7 +121,14 @@ const Home = ({
           {showError && <Alert severity="error">{error}</Alert>}
         </Grid>
         <Grid item xs={12}>
-          {showError && <Error {...forError} />}
+          {showError && (
+            <Error
+              {...{
+                setShowError,
+                error,
+              }}
+            />
+          )}
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={1}>
@@ -157,10 +137,28 @@ const Home = ({
                 <Response {...item} key={index} />
               ))}
           </Stack>
-          <PromptController {...forPrompController} />
+          <PromptController
+            {...{
+              reset,
+              tokens,
+              nucleus,
+              personaText,
+              threadSize,
+              showSettings,
+              setTokens,
+              setNucleus,
+              setPersona,
+              temperature,
+              setThreadSize,
+              setTemperature,
+              setChatResponse,
+              selectedModel,
+              setSelectedModel,
+            }}
+          />
         </Grid>
       </Grid>
-      <PromptInput {...forPrompt} />
+      <PromptInput onSubmit={onSubmit} loading={loading} />
     </Box>
   )
 }
