@@ -26,7 +26,6 @@ export const useThreadedConversation = (
   return [conversation, setConversation];
 };
 
-// Define the hook
 export const useChatResponse = (localStorageKey: string, chatResponse?: ChatResponse[]): [
   ChatResponse[],
   React.Dispatch<React.SetStateAction<ChatResponse[]>>

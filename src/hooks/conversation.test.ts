@@ -1,6 +1,7 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 
-import { ChatResponse, useThreadedConversation } from './conversation'
+import { ChatResponse, useChatResponse, useThreadedConversation } from './conversation'
+
 
 describe('useThreadedConversation', () => {
   const chatResponse = [
@@ -38,7 +39,6 @@ describe('useThreadedConversation', () => {
 
     const updatedChatResponse = [
       { promptQuestion: 'How old are you?', botResponse: 'I am 5 years old.' },
-      // { promptQuestion: 'Where are you from?', botResponse: 'I am from Chatland.' }
     ];
 
     rerender({ chatResponse: updatedChatResponse, threadSize: 2 });
@@ -46,8 +46,89 @@ describe('useThreadedConversation', () => {
     expect(result.current[0]).toEqual([
       'How are you?\nI am good, thanks for asking.\n',
       'What is your name?\nMy name is Chatbot.\n',
-      // 'How old are you?\nI am 5 years old.\n',
-      // 'Where are you from?\nI am from Chatland.\n'
     ]);
+  });
+
+  it('updates the conversation when the convoStore changes', () => {
+    const { result, rerender } = renderHook(
+      ({ chatResponse, threadSize }) => useThreadedConversation(chatResponse, threadSize),
+      { initialProps: { chatResponse, threadSize: 3 } }
+    );
+
+    expect(result.current[0]).toEqual([
+      'Hello?\nHi there!\n',
+      'How are you?\nI am good, thanks for asking.\n',
+      'What is your name?\nMy name is Chatbot.\n'
+    ]);
+
+    const updatedChatResponse = [
+      { promptQuestion: 'How old are you?', botResponse: 'I am 5 years old.' },
+      { promptQuestion: 'Where are you from?', botResponse: 'I am from Chatland.' }
+    ];
+
+    rerender({ chatResponse: updatedChatResponse, threadSize: 3 });
+
+    expect(result.current[0]).toEqual([
+      'Hello?\nHi there!\n',
+      'How are you?\nI am good, thanks for asking.\n',
+      'What is your name?\nMy name is Chatbot.\n',
+    ]);
+  });
+});
+
+
+
+describe('useChatResponse', () => {
+  const localStorageKey = 'testKey';
+
+  afterEach(() => {
+    localStorage.clear();
+  });
+
+  it('should return an empty conversation array by default', () => {
+    const { result } = renderHook(() => useChatResponse(localStorageKey));
+
+    expect(result.current[0]).toEqual([]);
+  });
+
+  it('should return the chatResponse array if it is provided', () => {
+    const chatResponse: ChatResponse[] = [
+      {
+        botResponse: 'Hello',
+        promptQuestion: 'How are you?',
+        totalTokens: '10',
+      },
+    ];
+
+    const { result } = renderHook(() => useChatResponse(localStorageKey, chatResponse));
+
+    expect(result.current[0]).toEqual(chatResponse);
+  });
+
+  it('should store the conversation array in localStorage', () => {
+    const chatResponse: ChatResponse[] = [
+      {
+        botResponse: 'Hello',
+        promptQuestion: 'How are you?',
+        totalTokens: '10',
+      },
+    ];
+
+    const { result } = renderHook(() => useChatResponse(localStorageKey, chatResponse));
+
+    expect(localStorage.getItem(localStorageKey)).toEqual(JSON.stringify(chatResponse));
+
+    const newChatResponse: ChatResponse[] = [
+      {
+        botResponse: 'Goodbye',
+        promptQuestion: 'See you later',
+      },
+    ];
+
+    act(() => {
+      result.current[1](newChatResponse);
+    });
+
+    expect(localStorage.getItem(localStorageKey)).toEqual(JSON.stringify(newChatResponse));
   });
 });
