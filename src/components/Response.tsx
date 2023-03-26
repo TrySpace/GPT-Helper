@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { Box, Card, Divider, Stack, Typography } from '@mui/material'
 
@@ -34,7 +34,7 @@ const Response: React.FC<ResponseProps> = ({
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                style={coldarkDark}
+                style={atomDark}
                 language={match[1]}
                 PreTag="div"
                 {...props}
