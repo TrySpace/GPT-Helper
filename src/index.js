@@ -5,7 +5,7 @@ import './index.css'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     mode: 'dark',
   },

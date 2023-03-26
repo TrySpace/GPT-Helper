@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Card,
   FormControl,
   InputLabel,
   MenuItem,
@@ -100,7 +101,7 @@ const PromptController = ({
 }) => {
   const personasArray = Object.entries(personas)
   return (
-    <Box
+    <Card
       className={`${showSettings ? 'settings' : 'settings hide'}`}
       sx={{ overflowY: 'scroll', maxHeight: '80vh' }}
     >
@@ -177,7 +178,7 @@ const PromptController = ({
           )
         })}
       </Box>
-    </Box>
+    </Card>
   )
 }
 

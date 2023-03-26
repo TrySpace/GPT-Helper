@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, CircularProgress, TextField } from '@mui/material'
+import { Box, Card, CircularProgress, TextField } from '@mui/material'
 
 const PromptInput = ({ onSubmit, loading }) => {
   const [rows, setRows] = useState(1)
@@ -21,7 +21,7 @@ const PromptInput = ({ onSubmit, loading }) => {
   }
 
   return (
-    <Box
+    <Card
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -41,7 +41,6 @@ const PromptInput = ({ onSubmit, loading }) => {
           flexDirection: 'column',
           alignItems: 'center',
           width: '100%',
-          backgroundColor: 'palette.background.default',
         }}
       >
         <TextField
@@ -53,7 +52,9 @@ const PromptInput = ({ onSubmit, loading }) => {
           onKeyDown={handleSubmit}
           autoFocus
           placeholder="Ask a question"
-          sx={{ backgroundColor: 'mid', width: '100%' }}
+          sx={{
+            width: '100%',
+          }}
         />
       </Box>
       {loading && (
@@ -61,7 +62,7 @@ const PromptInput = ({ onSubmit, loading }) => {
           <CircularProgress />
         </Box>
       )}
-    </Box>
+    </Card>
   )
 }
 
