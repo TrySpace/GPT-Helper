@@ -4,7 +4,6 @@ function App() {
   return (
     <div className="container">
       <Home />
-      <FloatingInput />
     </div>
   )
 }

@@ -44,48 +44,48 @@ const Prompt = ({ onSubmit, loading }) => {
 
 export default Prompt
 
-export const FloatingInput = () => {
-  const inputRef = useRef(null)
-  const [inputValue, setInputValue] = useState('')
+// export const FloatingInput = () => {
+//   const inputRef = useRef(null)
+//   const [inputValue, setInputValue] = useState('')
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value)
-  }
+//   const handleInputChange = (e) => {
+//     setInputValue(e.target.value)
+//   }
 
-  const handleInputFocus = () => {
-    const input = inputRef.current
-    if (input) {
-      input.style.position = 'fixed'
-      input.style.bottom = 0
-    }
-  }
+//   const handleInputFocus = () => {
+//     const input = inputRef.current
+//     if (input) {
+//       input.style.position = 'fixed'
+//       input.style.bottom = 0
+//     }
+//   }
 
-  const handleInputBlur = () => {
-    const input = inputRef.current
-    if (input) {
-      input.style.position = 'static'
-    }
-  }
+//   const handleInputBlur = () => {
+//     const input = inputRef.current
+//     if (input) {
+//       input.style.position = 'static'
+//     }
+//   }
 
-  return (
-    <div style={{ padding: 20 }}>
-      <label htmlFor="floating-input">Type something:</label>
-      <input
-        ref={inputRef}
-        type="text"
-        id="floating-input"
-        value={inputValue}
-        onChange={handleInputChange}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        style={{
-          width: '100%',
-          height: 50,
-          border: '1px solid #ccc',
-          borderRadius: 5,
-          padding: 10,
-        }}
-      />
-    </div>
-  )
-}
+//   return (
+//     <div style={{ padding: 20 }}>
+//       <label htmlFor="floating-input">Type something:</label>
+//       <input
+//         ref={inputRef}
+//         type="text"
+//         id="floating-input"
+//         value={inputValue}
+//         onChange={handleInputChange}
+//         onFocus={handleInputFocus}
+//         onBlur={handleInputBlur}
+//         style={{
+//           width: '100%',
+//           height: 50,
+//           border: '1px solid #ccc',
+//           borderRadius: 5,
+//           padding: 10,
+//         }}
+//       />
+//     </div>
+//   )
+// }

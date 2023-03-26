@@ -34,7 +34,7 @@ module.exports = {
   //   }
   // ],
   // ignorePatterns: ["**/*.config.js"],
-  parser: '@typescript-eslint/parser',
+  // parser: '@typescript-eslint/parser',
   parserOptions: {
     createDefaultProgram: true,
     // Fix parserOptions.project error
