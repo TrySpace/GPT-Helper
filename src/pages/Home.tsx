@@ -14,8 +14,9 @@ import Alert from '@mui/material/Alert'
 import Icon from '@mui/material/Icon'
 import { Persona, PERSONAS } from '../config/personas'
 import { Stack } from '@mui/material'
+import { useGPTApi } from './api'
 
-interface ChatResponse {
+export interface ChatResponse {
   botResponse: string
   promptQuestion: string
   totalTokens: string
@@ -58,105 +59,27 @@ const Home = ({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     event.preventDefault()
     setLoading(true)
-    const options = {
-      headers: {
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    }
 
-    console.log(`🚀 ~ onSubmit ~ selectedModel:`, selectedModel)
-    if (selectedModel === 'gpt-3.5-turbo') {
-      // Sets the prompt with instructions.
-      const promptOptions = `Respond to the user in markdown. ${personaText} `
-
-      const promptData = {
-        model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'user',
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            content: `${promptOptions}\n${conversation}\n${question}\n`,
-          },
-        ],
-        n: 1,
-        top_p: Number(nucleus),
-        max_tokens: Number(tokens),
-        temperature: Number(temperature),
-      }
-      console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
-
-      try {
-        const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-          promptData,
-          options
-        )
-        console.log(`🚀 ~ onSubmit ~ response:`, response)
-        const newChat: ChatResponse = {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          botResponse: response.data.choices[0].message.content,
-          promptQuestion: question,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          totalTokens: response.data.usage.total_tokens,
-        }
-        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
-
-        setLoading(false)
-        setChatResponse([...chatResponse, newChat])
-      } catch (err) {
-        setLoading(false)
-        console.log(err)
-        // @ts-expect-error
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
-        setError(err?.response?.data?.error.message)
-      }
-    } else {
-      const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${personaText} STOP `
-      const promptData = {
-        model: selectedModel,
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
-        top_p: Number(nucleus),
-        max_tokens: Number(tokens),
-        temperature: Number(temperature),
-        n: 1,
-        stream: false,
-        logprobs: null,
-        stop: ['STOP', 'User:'],
-      }
-      console.log(`🚀 ~ onSubmit ~ promptData:`, promptData)
-
-      try {
-        const response = await axios.post(
-          'https://api.openai.com/v1/completions',
-          promptData,
-          options
-        )
-        console.log(`🚀 ~ onSubmit ~ response:`, response)
-        const newChat = {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          botResponse: response.data.choices[0].text,
-          promptQuestion: question,
-
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          totalTokens: response.data.usage.total_tokens,
-        }
-        console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
-
-        setLoading(false)
-        setChatResponse([...chatResponse, newChat])
-      } catch (err) {
-        setLoading(false)
-        // @ts-expect-error
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
-        setError(err?.response?.data.error.message)
+    const gpt = useGPTApi({
+      question,
+      chatResponse,
+      selectedModel,
+      conversation,
+      personaText,
+      nucleus,
+      tokens,
+      temperature,
+    })
+    await gpt.then((res) => {
+      console.log(`🚀 ~ gpt.then ~ res:`, res)
+      if (res.error) {
+        setError(res.error)
         setShowError(true)
-        // @ts-expect-error
-        console.log(err?.response)
+      } else if (res.chatResponse) {
+        setChatResponse(res.chatResponse)
       }
-    }
+      setLoading(false)
+    })
   }
 
   const reset = () => {
