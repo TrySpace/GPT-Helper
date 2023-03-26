@@ -24,10 +24,10 @@ const Prompt = ({ onSubmit, loading }) => {
         <form onKeyDown={handleKeyDown}>
           <textarea
             rows={rows}
-            resize="none"
+            // resize="none"
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
-            cols="50"
+            cols={50}
             className="input-text bg-mid "
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onKeyDown={handleSubmit}

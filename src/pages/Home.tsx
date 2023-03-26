@@ -13,7 +13,15 @@ import IconButton from '@mui/material/IconButton'
 import Alert from '@mui/material/Alert'
 import Icon from '@mui/material/Icon'
 
-let savedConversation = JSON.parse(localStorage.getItem('conversation'))
+interface ChatResponse {
+  botResponse: string
+  promptQuestion: string
+  totalTokens: string
+}
+
+const convoStore = localStorage.getItem('conversation')
+// @ts-expect-error
+let savedConversation = JSON.parse(convoStore)
 if (savedConversation) console.log('localstorage', savedConversation)
 
 const Home = () => {
@@ -57,10 +65,12 @@ const Home = () => {
   const [showSettings, setShowSettings] = useState(true)
 
   // Values for Prompt
-  const [conversation, setConversation] = useState('')
+  const [conversation, setConversation] = useState<string[] | string>('')
 
   // Values for Completion
-  const [chatResponse, setChatResponse] = useState(savedConversation || [])
+  const [chatResponse, setChatResponse] = useState<ChatResponse[]>(
+    savedConversation || []
+  )
 
   const onSubmit = async (event, question) => {
     event.preventDefault()
@@ -96,7 +106,7 @@ const Home = () => {
           promptData,
           options
         )
-        const newChat = {
+        const newChat: ChatResponse = {
           botResponse: response.data.choices[0].message.content,
           promptQuestion: question,
           totalTokens: response.data.usage.total_tokens,
@@ -107,7 +117,8 @@ const Home = () => {
       } catch (error) {
         setLoading(false)
         console.log(error)
-        setError(error.response.data.error.message)
+        // @ts-expect-error
+        setError(error?.response?.data?.error.message)
       }
     } else {
       const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${persona} STOP `
@@ -140,9 +151,11 @@ const Home = () => {
         console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
       } catch (error) {
         setLoading(false)
-        setError(error.response.data.error.message)
+        // @ts-expect-error
+        setError(error?.response?.data.error.message)
         setShowError(true)
-        console.log(error.response)
+        // @ts-expect-error
+        console.log(error?.response)
       }
     }
   }
@@ -161,6 +174,7 @@ const Home = () => {
   useEffect(() => {
     if (chatResponse.length > threadSize) {
       const newArray = [...chatResponse]
+      console.log(`🚀 ~ useEffect ~ chatResponse:`, chatResponse)
       newArray.splice(0, newArray.length - threadSize)
       setConversation(
         newArray.map((chat) => `${chat.promptQuestion}\n${chat.botResponse}\n`)

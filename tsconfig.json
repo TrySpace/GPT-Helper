@@ -21,24 +21,5 @@
     // "exactOptionalPropertyTypes": true,
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "typedocOptions": {
-    "name": "Documentation",
-    "entryPoints": [
-      "src/components",
-      "src/constants",
-      "src/routes",
-      "src/state",
-      "src/styles",
-      "src/utils"
-    ],
-    "entryPointStrategy": "Expand",
-    "out": "docs",
-    "exclude": [
-      "**/*+(index|.spec|.e2e|.fixture).ts",
-      "**/*+(index|.spec|.e2e|.fixture).tsx"
-    ],
-    "excludeExternals": true,
-    "logLevel": "Verbose"
-  }
+  "exclude": ["node_modules"]
 }

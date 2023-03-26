@@ -1,6 +1,12 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
+import { ChangeEvent } from 'react'
 
 const Personas = ({ personaValue, setPersona, personaKey, persona }) => {
+  const handlePersonaChange = (event) => {
+    const evt = event as ChangeEvent<HTMLInputElement>
+    setPersona(evt.target.value)
+  }
+
   return (
     <RadioGroup name={personaKey}>
       <FormControlLabel
@@ -8,7 +14,7 @@ const Personas = ({ personaValue, setPersona, personaKey, persona }) => {
         control={<Radio />}
         label={personaKey}
         checked={persona === personaValue}
-        onChange={(event) => setPersona(event.target.value)}
+        onChange={handlePersonaChange}
         className="mg-top-sm"
       />
     </RadioGroup>

@@ -1,7 +1,18 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import Personas from './Personas'
 
-import React from 'react'
+import React, { ChangeEvent } from 'react'
+
+interface InputProps {
+  name: string
+  type: string
+  value: string | number
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  min?: string
+  max?: string
+  step?: string
+  title?: string
+}
 
 const InputComponent = ({
   name,
@@ -12,7 +23,7 @@ const InputComponent = ({
   step,
   onChange,
   title,
-}) => {
+}: InputProps) => {
   return (
     <div>
       <input
@@ -29,9 +40,16 @@ const InputComponent = ({
   )
 }
 
-const ModelSelect = ({ selectedModel, setSelectedModel }) => {
+const ModelSelect = ({
+  selectedModel,
+  setSelectedModel,
+}: {
+  selectedModel: string
+  setSelectedModel: (model: string) => void
+}) => {
   const handleChange = (event) => {
-    setSelectedModel(event.target.value)
+    const evt = event as ChangeEvent<HTMLSelectElement>
+    setSelectedModel(evt.target.value)
   }
 
   return (
