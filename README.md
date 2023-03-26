@@ -34,7 +34,7 @@ You can edit `./config/personas.ts`
 
 ### Customize
 
-Change `mode` to `light` in `index.js` for light mode
+Change `mode` to `light` in `index.tsx` for light mode
 
 ## Todos
 
