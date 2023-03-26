@@ -1,18 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
+import { Box, Typography } from '@mui/material'
 
-const Error = ({ error, setShowError }) => {
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setShowError(false);
-        }, 8000);
-        return () => clearTimeout(timeout);
-    }, [setShowError]);
+interface ErrorProps {
+  error: string
+  setShowError: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-    return (
-        <div className='container full bg-error pad-lg radius-sm mg-bot-sm content-center'>
-            <h3>{error}</h3>
-        </div>
-    );
-};
+const Error: React.FC<ErrorProps> = ({ error, setShowError }) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowError(false)
+    }, 8000)
+    return () => clearTimeout(timeout)
+  }, [setShowError])
 
-export default Error;
+  return (
+    <Box className="container full bg-error pad-lg radius-sm mg-bot-sm content-center">
+      <Typography variant="h3">{error}</Typography>
+    </Box>
+  )
+}
+
+export default Error

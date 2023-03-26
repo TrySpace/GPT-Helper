@@ -1,11 +1,20 @@
 import { FaCog } from 'react-icons/fa'
-
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
-const Navbar = ({ setShowSettings, showSettings, children }) => {
+interface NavbarProps {
+  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>
+  showSettings: boolean
+  children: React.ReactNode
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+  setShowSettings,
+  showSettings,
+  children,
+}) => {
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar>
         {children}
         <FaCog

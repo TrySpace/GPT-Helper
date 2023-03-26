@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Alert from '@mui/material/Alert'
 import Icon from '@mui/material/Icon'
-import { PERSONAS } from '../config/personas'
+import { Persona, PERSONAS } from '../config/personas'
 import { Stack } from '@mui/material'
 
 interface ChatResponse {
@@ -33,7 +33,7 @@ const Home = ({
 }: {
   showSettings: boolean
   personaText: string
-  setPersona: (persona: string) => void
+  setPersona: (persona: Persona) => void
 }) => {
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)

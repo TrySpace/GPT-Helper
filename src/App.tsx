@@ -21,7 +21,7 @@ function App() {
     <>
       {inputGlobalStyles(theme)}
       <Navbar showSettings={showSettings} setShowSettings={setShowSettings}>
-        <Typography variant="caption" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
           {persona}
         </Typography>
         {/* <IconButton color="inherit">
