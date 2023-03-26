@@ -18,8 +18,8 @@ const Response: React.FC<ResponseProps> = ({
   return (
     <Card sx={{ p: 1 }}>
       <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
-        <Typography variant="h3">You: {promptQuestion}</Typography>
-        <Typography variant="h4" title="Total token cost">
+        <Typography variant="body1">You: {promptQuestion}</Typography>
+        <Typography variant="caption" title="Total token cost">
           {totalTokens}
         </Typography>
       </Stack>

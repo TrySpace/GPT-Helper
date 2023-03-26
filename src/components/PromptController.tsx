@@ -9,9 +9,10 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import Personas from './Personas'
+import PersonaOption from './PersonaOption'
 
 import React, { ChangeEvent } from 'react'
+import { Persona } from '../config/personas'
 
 interface InputProps {
   name: string
@@ -82,6 +83,23 @@ const ModelSelect = ({
   )
 }
 
+interface PromptControllerProps {
+  temperature: number
+  setTemperature: (value: string) => void
+  tokens: number
+  setTokens: (value: number) => void
+  selectedModel: string
+  setSelectedModel: (value: string) => void
+  nucleus: number
+  setNucleus: (value: string) => void
+  setPersona: React.Dispatch<React.SetStateAction<string>>
+  personaText: string
+  personas: Persona[]
+  setThreadSize: (value: string) => void
+  threadSize: number
+  reset: () => void
+  showSettings: boolean
+}
 const PromptController = ({
   temperature,
   setTemperature,
@@ -98,7 +116,7 @@ const PromptController = ({
   threadSize,
   reset,
   showSettings,
-}) => {
+}: PromptControllerProps) => {
   const personasArray = Object.entries(personas)
   return (
     <Card
@@ -117,7 +135,7 @@ const PromptController = ({
       <Box className="mg-top-sm">
         {personasArray.map(([key, value], index) => {
           return (
-            <Personas
+            <PersonaOption
               key={index}
               personaValue={value}
               personaKey={key}
@@ -163,7 +181,7 @@ const PromptController = ({
             value={tokens}
             min="5"
             max="2048"
-            onChange={(event) => setTokens(event.target.value)}
+            onChange={(event) => setTokens(Number(event.target.value))}
             title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
           />
           <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>

@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import { useState, KeyboardEvent } from 'react'
 import { Box, Card, CircularProgress, TextField } from '@mui/material'
 
-const PromptInput = ({ onSubmit, loading }) => {
-  const [rows, setRows] = useState(1)
-  const [question, setQuestion] = useState('')
+interface PromptInputProps {
+  onSubmit: (
+    event: KeyboardEvent<HTMLDivElement>,
+    question: string
+  ) => Promise<void>
+  loading: boolean
+}
 
-  const handleKeyDown = (event) => {
+const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
+  const [rows, setRows] = useState<number>(1)
+  const [question, setQuestion] = useState<string>('')
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' && event.shiftKey && rows !== 5) {
       setRows(rows + 1)
     }
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.keyCode === 13 && !event.shiftKey) {
       event.preventDefault()
       setRows(1)
@@ -67,49 +75,3 @@ const PromptInput = ({ onSubmit, loading }) => {
 }
 
 export default PromptInput
-
-// export const FloatingInput = () => {
-//   const inputRef = useRef(null)
-//   const [inputValue, setInputValue] = useState('')
-
-//   const handleInputChange = (e) => {
-//     setInputValue(e.target.value)
-//   }
-
-//   const handleInputFocus = () => {
-//     const input = inputRef.current
-//     if (input) {
-//       input.style.position = 'fixed'
-//       input.style.bottom = 0
-//     }
-//   }
-
-//   const handleInputBlur = () => {
-//     const input = inputRef.current
-//     if (input) {
-//       input.style.position = 'static'
-//     }
-//   }
-
-//   return (
-//     <div style={{ padding: 20 }}>
-//       <label htmlFor="floating-input">Type something:</label>
-//       <input
-//         ref={inputRef}
-//         type="text"
-//         id="floating-input"
-//         value={inputValue}
-//         onChange={handleInputChange}
-//         onFocus={handleInputFocus}
-//         onBlur={handleInputBlur}
-//         style={{
-//           width: '100%',
-//           height: 50,
-//           border: '1px solid #ccc',
-//           borderRadius: 5,
-//           padding: 10,
-//         }}
-//       />
-//     </div>
-//   )
-// }

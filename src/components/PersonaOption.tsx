@@ -1,14 +1,14 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { ChangeEvent } from 'react'
 
-interface PersonasProps {
-  personaValue: string
+interface PersonaOptionProps {
+  personaValue: string | unknown
   setPersona: React.Dispatch<React.SetStateAction<string>>
   personaKey: string
   personaText: string
 }
 
-const Personas: React.FC<PersonasProps> = ({
+const PersonaOption: React.FC<PersonaOptionProps> = ({
   personaValue,
   setPersona,
   personaKey,
@@ -32,4 +32,4 @@ const Personas: React.FC<PersonasProps> = ({
   )
 }
 
-export default Personas
+export default PersonaOption
