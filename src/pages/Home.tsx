@@ -23,7 +23,7 @@ interface ChatResponse {
 
 const convoStore = localStorage.getItem('conversation')
 // @ts-ignore
-let savedConversation = JSON.parse(convoStore)
+let savedConversation: ChatResponse[] = JSON.parse(convoStore)
 if (savedConversation) console.log('localstorage', savedConversation)
 
 const Home = ({
@@ -55,10 +55,12 @@ const Home = ({
   )
 
   const onSubmit = async (event, question) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     event.preventDefault()
     setLoading(true)
     const options = {
       headers: {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
         'Content-Type': 'application/json',
       },
@@ -74,6 +76,7 @@ const Home = ({
         messages: [
           {
             role: 'user',
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             content: `${promptOptions}\n${conversation}\n${question}\n`,
           },
         ],
@@ -92,24 +95,28 @@ const Home = ({
         )
         console.log(`🚀 ~ onSubmit ~ response:`, response)
         const newChat: ChatResponse = {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           botResponse: response.data.choices[0].message.content,
           promptQuestion: question,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           totalTokens: response.data.usage.total_tokens,
         }
         console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
 
         setLoading(false)
         setChatResponse([...chatResponse, newChat])
-      } catch (error) {
+      } catch (err) {
         setLoading(false)
-        console.log(error)
+        console.log(err)
         // @ts-expect-error
-        setError(error?.response?.data?.error.message)
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
+        setError(err?.response?.data?.error.message)
       }
     } else {
       const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${personaText} STOP `
       const promptData = {
         model: selectedModel,
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         prompt: `${promptOptions}${conversation}\nUser: ${question}.\n`,
         top_p: Number(nucleus),
         max_tokens: Number(tokens),
@@ -129,8 +136,11 @@ const Home = ({
         )
         console.log(`🚀 ~ onSubmit ~ response:`, response)
         const newChat = {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           botResponse: response.data.choices[0].text,
           promptQuestion: question,
+
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           totalTokens: response.data.usage.total_tokens,
         }
         console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
@@ -140,6 +150,7 @@ const Home = ({
       } catch (err) {
         setLoading(false)
         // @ts-expect-error
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
         setError(err?.response?.data.error.message)
         setShowError(true)
         // @ts-expect-error
