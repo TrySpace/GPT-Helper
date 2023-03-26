@@ -1,9 +1,10 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { ChangeEvent } from 'react'
+import { Persona } from '../config/personas'
 
 interface PersonaOptionProps {
   personaValue: string | unknown
-  setPersona: React.Dispatch<React.SetStateAction<string>>
+  setPersona: React.Dispatch<React.SetStateAction<Persona>>
   personaKey: string
   personaText: string
 }
@@ -16,7 +17,7 @@ const PersonaOption: React.FC<PersonaOptionProps> = ({
 }) => {
   const handlePersonaChange = (event) => {
     const evt = event as ChangeEvent<HTMLInputElement>
-    setPersona(evt.target.value)
+    setPersona(evt.target.value as Persona)
   }
 
   return (

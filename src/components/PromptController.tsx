@@ -12,7 +12,7 @@ import {
 import PersonaOption from './PersonaOption'
 
 import React, { ChangeEvent } from 'react'
-import { Persona } from '../config/personas'
+import { Persona, PERSONAS } from '../config/personas'
 
 interface InputProps {
   name: string
@@ -85,17 +85,16 @@ const ModelSelect = ({
 
 interface PromptControllerProps {
   temperature: number
-  setTemperature: (value: string) => void
+  setTemperature: React.Dispatch<React.SetStateAction<number>>
   tokens: number
   setTokens: (value: number) => void
   selectedModel: string
   setSelectedModel: (value: string) => void
   nucleus: number
-  setNucleus: (value: string) => void
-  setPersona: React.Dispatch<React.SetStateAction<string>>
+  setNucleus: React.Dispatch<React.SetStateAction<number>>
+  setPersona: React.Dispatch<React.SetStateAction<Persona>>
   personaText: string
-  personas: Persona[]
-  setThreadSize: (value: string) => void
+  setThreadSize: (value: number) => void
   threadSize: number
   reset: () => void
   showSettings: boolean
@@ -111,13 +110,12 @@ const PromptController = ({
   setNucleus,
   setPersona,
   personaText,
-  personas,
   setThreadSize,
   threadSize,
   reset,
   showSettings,
 }: PromptControllerProps) => {
-  const personasArray = Object.entries(personas)
+  const personasArray = Object.entries(PERSONAS)
   return (
     <Card
       className={`${showSettings ? 'settings' : 'settings hide'}`}
@@ -160,7 +158,7 @@ const PromptController = ({
             min="0"
             max="1"
             step=".1"
-            onChange={(event) => setTemperature(event.target.value)}
+            onChange={(event) => setTemperature(Number(event.target.value))}
             title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
           />
           <InputLabel>{`top_p: ${nucleus}`}</InputLabel>
@@ -171,7 +169,7 @@ const PromptController = ({
             min="0"
             max="1"
             step=".1"
-            onChange={(event) => setNucleus(event.target.value)}
+            onChange={(event) => setNucleus(Number(event.target.value))}
             title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
           />
           <InputLabel>{`Tokens: ${tokens}`}</InputLabel>
@@ -192,7 +190,7 @@ const PromptController = ({
             min="1"
             max="10"
             step="1"
-            onChange={(event) => setThreadSize(event.target.value)}
+            onChange={(event) => setThreadSize(Number(event.target.value))}
             title="Sets the max thread size. This will set how large the chat bots memory can be."
           />
         </Stack>

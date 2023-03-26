@@ -33,7 +33,7 @@ const Home = ({
 }: {
   showSettings: boolean
   personaText: string
-  setPersona: (persona: Persona) => void
+  setPersona: React.Dispatch<React.SetStateAction<Persona>> // (persona: Persona) => void
 }) => {
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
@@ -189,7 +189,6 @@ const Home = ({
     tokens,
     nucleus,
     personaText,
-    personas: PERSONAS,
     threadSize,
     showSettings,
     setTokens,
