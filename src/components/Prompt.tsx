@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Box, CircularProgress, TextField } from '@mui/material'
 
 const Prompt = ({ onSubmit, loading }) => {
   const [rows, setRows] = useState(1)
@@ -18,28 +19,48 @@ const Prompt = ({ onSubmit, loading }) => {
       setQuestion('')
     }
   }
+
   return (
-    <div className="container auto content-center align mg-bot-lg ">
-      <div className="container ">
-        <form onKeyDown={handleKeyDown}>
-          <textarea
-            rows={rows}
-            // resize="none"
-            value={question}
-            onChange={(event) => setQuestion(event.target.value)}
-            cols={50}
-            className="input-text bg-mid "
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onKeyDown={handleSubmit}
-            autoFocus={true}
-            placeholder="Ask a question"
-          />
-        </form>
-        <div className="loader ">
-          {loading && <div className="spinner "></div>}
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 'large',
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+      }}
+    >
+      <Box
+        component="form"
+        onKeyDown={handleKeyDown}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
+        <TextField
+          multiline
+          rows={rows}
+          value={question}
+          onChange={(event) => setQuestion(event.target.value)}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onKeyDown={handleSubmit}
+          autoFocus
+          placeholder="Ask a question"
+          sx={{ backgroundColor: 'mid', width: '100%' }}
+        />
+      </Box>
+      {loading && (
+        <Box sx={{ marginLeft: 'medium' }}>
+          <CircularProgress />
+        </Box>
+      )}
+    </Box>
   )
 }
 

@@ -149,13 +149,13 @@ const Home = () => {
         setLoading(false)
         setChatResponse([...chatResponse, newChat])
         console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
-      } catch (error) {
+      } catch (err) {
         setLoading(false)
         // @ts-expect-error
-        setError(error?.response?.data.error.message)
+        setError(err?.response?.data.error.message)
         setShowError(true)
         // @ts-expect-error
-        console.log(error?.response)
+        console.log(err?.response)
       }
     }
   }
