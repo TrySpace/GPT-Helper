@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react'
-import { ChatResponse } from '../pages/Home'
+
+export interface ChatResponse {
+  botResponse: string
+  promptQuestion: string
+  totalTokens?: string
+}
 
 export const useThreadedConversation = (
   chatResponse: ChatResponse[],

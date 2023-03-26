@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent } from 'react'
+import React, { useState, KeyboardEvent } from 'react'
 import { Box, Card, CircularProgress, TextField } from '@mui/material'
 
 interface PromptInputProps {
@@ -10,8 +10,8 @@ interface PromptInputProps {
 }
 
 const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
-  const [rows, setRows] = useState<number>(1)
-  const [question, setQuestion] = useState<string>('')
+  const [rows, setRows] = useState(1)
+  const [question, setQuestion] = useState('')
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' && event.shiftKey && rows !== 5) {
@@ -19,11 +19,11 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
     }
   }
 
-  const handleSubmit = async (event: KeyboardEvent<HTMLDivElement>) => {
+  const handleSubmit = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.keyCode === 13 && !event.shiftKey) {
       event.preventDefault()
       setRows(1)
-      await onSubmit(event, question)
+      onSubmit(event, question)
       setQuestion('')
     }
   }
@@ -56,7 +56,6 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
           rows={rows}
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onKeyDown={handleSubmit}
           autoFocus
           placeholder="Ask a question"

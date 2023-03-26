@@ -11,17 +11,7 @@ import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
 import Response from '../components/Response'
 import { Persona } from '../config/personas'
-import {
-  useChatResponse,
-  useThreadedConversation,
-  useConvoStore,
-} from '../hooks/conversation'
-
-export interface ChatResponse {
-  botResponse: string
-  promptQuestion: string
-  totalTokens: string
-}
+import { useChatResponse, useThreadedConversation } from '../hooks/conversation'
 
 const Home = ({
   showSettings,
