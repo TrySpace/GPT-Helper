@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, CircularProgress, TextField } from '@mui/material'
 
-const Prompt = ({ onSubmit, loading }) => {
+const PromptInput = ({ onSubmit, loading }) => {
   const [rows, setRows] = useState(1)
   const [question, setQuestion] = useState('')
 
@@ -41,6 +41,7 @@ const Prompt = ({ onSubmit, loading }) => {
           flexDirection: 'column',
           alignItems: 'center',
           width: '100%',
+          backgroundColor: 'palette.background.default',
         }}
       >
         <TextField
@@ -64,7 +65,7 @@ const Prompt = ({ onSubmit, loading }) => {
   )
 }
 
-export default Prompt
+export default PromptInput
 
 // export const FloatingInput = () => {
 //   const inputRef = useRef(null)

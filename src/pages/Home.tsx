@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Response from '../components/Response'
 import Navbar from '../components/Navbar'
-import Prompt from '../components/Prompt'
+import PromptInput from '../components/PromptInput'
 import PromptController from '../components/PromptController'
 import Error from '../components/Error'
 import Box from '@mui/material/Box'
@@ -215,7 +215,7 @@ const Home = ({ showSettings }: { showSettings: boolean }) => {
               ))}
           </div>
           <PromptController {...forPrompController} />
-          <Prompt {...forPrompt} />
+          <PromptInput {...forPrompt} />
         </Grid>
       </Grid>
     </Box>
