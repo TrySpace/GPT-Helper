@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+    // "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
+  "typedocOptions": {
+    "name": "Documentation",
+    "entryPoints": [
+      "src/components",
+      "src/constants",
+      "src/routes",
+      "src/state",
+      "src/styles",
+      "src/utils"
+    ],
+    "entryPointStrategy": "Expand",
+    "out": "docs",
+    "exclude": [
+      "**/*+(index|.spec|.e2e|.fixture).ts",
+      "**/*+(index|.spec|.e2e|.fixture).tsx"
+    ],
+    "excludeExternals": true,
+    "logLevel": "Verbose"
+  }
+}

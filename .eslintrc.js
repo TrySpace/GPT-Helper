@@ -21,9 +21,9 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
-    // 'plugin:@typescript-eslint/recommended',
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    // 'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'prettier',
   ],
   // "overrides": [
   //   {
@@ -34,11 +34,11 @@ module.exports = {
   //   }
   // ],
   // ignorePatterns: ["**/*.config.js"],
-  // parser: '@typescript-eslint/parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     createDefaultProgram: true,
     // Fix parserOptions.project error
-    // project: ['./tsconfig.eslint.json'],
+    project: ['./tsconfig.eslint.json'],
     sourceType: 'module', // tsconfigRootDir: __dirname,
     // "ecmaFeatures": {
     //   "jsx": true
@@ -49,113 +49,112 @@ module.exports = {
     // 'eslint-plugin-jsdoc',
     // 'eslint-plugin-prefer-arrow',
     'eslint-plugin-react',
-    // '@typescript-eslint', // "@typescript-eslint/tslint",
   ],
   rules: {
-    // '@typescript-eslint/ban-ts-comment': 'off',
-    // '@typescript-eslint/adjacent-overload-signatures': 'error',
-    // '@typescript-eslint/array-type': [
-    //   'off',
-    //   {
-    //     default: 'generic',
-    //   },
-    // ],
-    // '@typescript-eslint/ban-types': [
-    //   'warn',
-    //   {
-    //     types: {
-    //       Object: {
-    //         message: 'Avoid using the `Object` type. Did you mean `object`?',
-    //       },
-    //       Function: {
-    //         message:
-    //           'Avoid using the `Function` type. Prefer a specific function type, like `() => void`.',
-    //       },
-    //       Boolean: {
-    //         message: 'Avoid using the `Boolean` type. Did you mean `boolean`?',
-    //       },
-    //       Number: {
-    //         message: 'Avoid using the `Number` type. Did you mean `number`?',
-    //       },
-    //       String: {
-    //         message: 'Avoid using the `String` type. Did you mean `string`?',
-    //       },
-    //       Symbol: {
-    //         message: 'Avoid using the `Symbol` type. Did you mean `symbol`?',
-    //       },
-    //     },
-    //   },
-    // ],
-    // '@typescript-eslint/consistent-type-assertions': 'error',
-    // '@typescript-eslint/dot-notation': 'error',
-    // '@typescript-eslint/indent': 'off',
-    // '@typescript-eslint/member-delimiter-style': [
-    //   'off',
-    //   {
-    //     multiline: {
-    //       delimiter: 'comma',
-    //       requireLast: true,
-    //     },
-    //     singleline: {
-    //       delimiter: 'comma',
-    //       requireLast: true,
-    //     },
-    //   },
-    // ],
-    // '@typescript-eslint/naming-convention': [
-    //   'warn',
-    //   {
-    //     selector: 'function',
-    //     format: ['PascalCase', 'camelCase'],
-    //   }, // {
-    //   //   selector: "objectLiteralProperty",
-    //   //   format: ["PascalCase"]
-    //   // },
-    // ],
-    // '@typescript-eslint/no-empty-function': 'warn',
-    // '@typescript-eslint/no-empty-interface': 'off',
-    // '@typescript-eslint/no-explicit-any': 'off',
-    // '@typescript-eslint/no-misused-new': 'error',
-    // '@typescript-eslint/no-namespace': 'warn',
-    // '@typescript-eslint/no-parameter-properties': 'off',
-    // '@typescript-eslint/no-shadow': [
-    //   'warn',
-    //   {
-    //     hoist: 'all',
-    //   },
-    // ],
-    // '@typescript-eslint/no-unused-expressions': 'warn',
-    // '@typescript-eslint/no-use-before-define': 'warn',
-    // '@typescript-eslint/no-var-requires': 'error',
-    // '@typescript-eslint/prefer-for-of': 'warn',
-    // '@typescript-eslint/prefer-function-type': 'error',
-    // '@typescript-eslint/prefer-namespace-keyword': 'error',
-    // '@typescript-eslint/quotes': 'off',
-    // '@typescript-eslint/prefer-regexp-exec': 'off',
-    // '@typescript-eslint/semi': ['off', null],
-    // '@typescript-eslint/triple-slash-reference': [
-    //   'error',
-    //   {
-    //     path: 'always',
-    //     types: 'prefer-import',
-    //     lib: 'always',
-    //   },
-    // ],
-    // '@typescript-eslint/type-annotation-spacing': 'warn',
-    // '@typescript-eslint/unified-signatures': 'error',
-    // '@typescript-eslint/no-unsafe-assignment': 'off',
-    // '@typescript-eslint/no-unsafe-argument': 'warn',
-    // '@typescript-eslint/no-unsafe-call': 'warn',
-    // '@typescript-eslint/no-unsafe-return': 'off',
-    // '@typescript-eslint/no-unsafe-member-access': 'warn',
-    // '@typescript-eslint/restrict-template-expressions': 'warn',
-    // '@typescript-eslint/no-floating-promises': 'warn',
-    // '@typescript-eslint/require-await': 'warn',
-    // '@typescript-eslint/no-unused-vars': 'off',
-    // '@typescript-eslint/explicit-module-boundary-types': 'off',
-    // '@typescript-eslint/brace-style': ['off'],
-    // '@typescript-eslint/restrict-plus-operands': ['warn'],
-    // '@typescript-eslint/unbound-method': ['warn'],
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/adjacent-overload-signatures': 'error',
+    '@typescript-eslint/array-type': [
+      'off',
+      {
+        default: 'generic',
+      },
+    ],
+    '@typescript-eslint/ban-types': [
+      'warn',
+      {
+        types: {
+          Object: {
+            message: 'Avoid using the `Object` type. Did you mean `object`?',
+          },
+          Function: {
+            message:
+              'Avoid using the `Function` type. Prefer a specific function type, like `() => void`.',
+          },
+          Boolean: {
+            message: 'Avoid using the `Boolean` type. Did you mean `boolean`?',
+          },
+          Number: {
+            message: 'Avoid using the `Number` type. Did you mean `number`?',
+          },
+          String: {
+            message: 'Avoid using the `String` type. Did you mean `string`?',
+          },
+          Symbol: {
+            message: 'Avoid using the `Symbol` type. Did you mean `symbol`?',
+          },
+        },
+      },
+    ],
+    '@typescript-eslint/consistent-type-assertions': 'error',
+    '@typescript-eslint/dot-notation': 'error',
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/member-delimiter-style': [
+      'off',
+      {
+        multiline: {
+          delimiter: 'comma',
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: 'comma',
+          requireLast: true,
+        },
+      },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'warn',
+      {
+        selector: 'function',
+        format: ['PascalCase', 'camelCase'],
+      }, // {
+      //   selector: "objectLiteralProperty",
+      //   format: ["PascalCase"]
+      // },
+    ],
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-misused-new': 'error',
+    '@typescript-eslint/no-namespace': 'warn',
+    '@typescript-eslint/no-parameter-properties': 'off',
+    '@typescript-eslint/no-shadow': [
+      'warn',
+      {
+        hoist: 'all',
+      },
+    ],
+    '@typescript-eslint/no-unused-expressions': 'warn',
+    '@typescript-eslint/no-use-before-define': 'warn',
+    '@typescript-eslint/no-var-requires': 'error',
+    '@typescript-eslint/prefer-for-of': 'warn',
+    '@typescript-eslint/prefer-function-type': 'error',
+    '@typescript-eslint/prefer-namespace-keyword': 'error',
+    '@typescript-eslint/quotes': 'off',
+    '@typescript-eslint/prefer-regexp-exec': 'off',
+    '@typescript-eslint/semi': ['off', null],
+    '@typescript-eslint/triple-slash-reference': [
+      'error',
+      {
+        path: 'always',
+        types: 'prefer-import',
+        lib: 'always',
+      },
+    ],
+    '@typescript-eslint/type-annotation-spacing': 'warn',
+    '@typescript-eslint/unified-signatures': 'error',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'warn',
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/require-await': 'warn',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/brace-style': ['off'],
+    '@typescript-eslint/restrict-plus-operands': ['warn'],
+    '@typescript-eslint/unbound-method': ['warn'],
     // 'jsdoc/check-alignment': 'error',
     // 'jsdoc/check-indentation': 'error',
     // 'jsdoc/newline-after-description': 'error',
@@ -218,6 +217,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-unsafe-finally': 'error',
     'no-unused-labels': 'error',
+    'no-unused-vars': 'off',
     'no-var': 'warn',
     'object-shorthand': 'error',
     'one-var': ['error', 'never'],

@@ -29,6 +29,7 @@ const Prompt = ({ onSubmit, loading }) => {
             onChange={(event) => setQuestion(event.target.value)}
             cols="50"
             className="input-text bg-mid "
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onKeyDown={handleSubmit}
             autoFocus={true}
             placeholder="Ask a question"

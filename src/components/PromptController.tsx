@@ -4,7 +4,6 @@ import Personas from './Personas'
 import React from 'react'
 
 const InputComponent = ({
-  label,
   name,
   type,
   value,
@@ -16,7 +15,6 @@ const InputComponent = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
       <input
         type={type}
         name={name}
