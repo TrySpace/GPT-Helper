@@ -2,15 +2,11 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-import { Box, Card, Divider, Stack, Typography } from '@mui/material'
+import { Card, Divider, Stack, Typography } from '@mui/material'
 
-interface ResponseProps {
-  botResponse: string
-  promptQuestion: string
-  totalTokens: string
-}
+import { ChatResponse } from '../hooks/conversation'
 
-const Response: React.FC<ResponseProps> = ({
+const Response: React.FC<ChatResponse> = ({
   botResponse,
   promptQuestion,
   totalTokens,

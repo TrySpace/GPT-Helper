@@ -81,7 +81,7 @@ const Home = ({
 
   // Scrolls to bottom of the page as new content is created
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight, 555)
+    window.scrollTo(0, document.body.scrollHeight)
   }, [chatResponse])
 
   return (
