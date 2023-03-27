@@ -1,8 +1,9 @@
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { atomDark, prism } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { Card, Divider, Stack, Typography } from '@mui/material'
+import useAppStore from '../store/appstore'
 
 export interface ChatResponse {
   botResponse: string
@@ -15,6 +16,7 @@ export const ChatResponse: React.FC<ChatResponse> = ({
   promptQuestion,
   totalTokens,
 }) => {
+  const { theme } = useAppStore()
   return (
     <Card sx={{ p: 1 }}>
       <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
@@ -34,7 +36,7 @@ export const ChatResponse: React.FC<ChatResponse> = ({
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                style={atomDark}
+                style={theme === 'dark' ? atomDark : prism}
                 language={match[1]}
                 PreTag="div"
                 {...props}

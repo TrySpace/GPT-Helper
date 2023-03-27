@@ -1,11 +1,15 @@
-import React, { useState, KeyboardEvent } from 'react'
-import { Box, Card, CircularProgress, TextField } from '@mui/material'
+import React, { useState, KeyboardEvent, MouseEventHandler } from 'react'
+import {
+  Box,
+  Card,
+  CircularProgress,
+  Icon,
+  IconButton,
+  TextField,
+} from '@mui/material'
 
 interface PromptInputProps {
-  onSubmit: (
-    event: KeyboardEvent<HTMLDivElement>,
-    question: string
-  ) => Promise<void>
+  onSubmit: (question: string) => Promise<void>
   loading: boolean
 }
 
@@ -13,21 +17,29 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
   const [rows, setRows] = useState(1)
   const [question, setQuestion] = useState('')
 
+  const submit = () => {
+    setRows(1)
+    onSubmit(question).catch((err) => {
+      console.error(err)
+    })
+    setQuestion('')
+  }
+
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' && event.shiftKey && rows !== 5) {
       setRows(rows + 1)
     }
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      submit()
+    }
   }
 
-  const handleSubmit = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.keyCode === 13 && !event.shiftKey) {
-      event.preventDefault()
-      setRows(1)
-      onSubmit(event, question).catch((err) => {
-        console.error(err)
-      })
-      setQuestion('')
-    }
+  const handleSubmitClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault()
+    submit()
   }
 
   return (
@@ -58,7 +70,7 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
           rows={rows}
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          onKeyDown={handleSubmit}
+          onKeyDown={handleKeyDown}
           autoFocus
           placeholder="Ask a question"
           sx={{
@@ -66,11 +78,14 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
           }}
         />
       </Box>
-      {loading && (
-        <Box sx={{ marginLeft: 'medium' }}>
-          <CircularProgress />
-        </Box>
-      )}
+
+      <IconButton
+        aria-label="send"
+        onClick={(e) => handleSubmitClick(e)}
+        disabled={loading}
+      >
+        {loading ? <CircularProgress size={24} /> : <Icon>send</Icon>}
+      </IconButton>
     </Card>
   )
 }

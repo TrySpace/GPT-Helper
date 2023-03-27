@@ -44,9 +44,7 @@ const Home = ({
   const [chatResponse, setChatResponse] =
     useLocalStorage<ChatResponse>('conversation')
 
-  const onSubmit = async (event, question) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    event.preventDefault()
+  const onSubmit = async (question: string) => {
     setLoading(true)
 
     const gpt = useGPTApi({
