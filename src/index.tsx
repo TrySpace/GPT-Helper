@@ -4,8 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { PaletteMode } from '@mui/material'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
+import { createTheme } from '@mui/material/styles'
 
 import App from './App'
 
@@ -22,9 +21,6 @@ export const appTheme = (mode: PaletteMode = 'dark') =>
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={appTheme('dark')}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 )

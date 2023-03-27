@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 
-import { Container, Icon, IconButton, Typography } from '@mui/material'
+import {
+  Container,
+  CssBaseline,
+  Icon,
+  IconButton,
+  ThemeProvider,
+  Typography,
+} from '@mui/material'
 
 import { appTheme } from './'
 import Navbar from './components/Navbar'
@@ -13,21 +20,24 @@ function App() {
   const [persona, setPersona] = useState<Persona>('default')
   const [personaText, setPersonaText] = useState<string>(PERSONAS.default)
 
-  const { theme, settingsOpen, setSettingsOpen } = useAppStore()
+  const { theme, setTheme, settingsOpen, setSettingsOpen } = useAppStore()
 
   useEffect(() => {
     setPersonaText(PERSONAS[persona])
   }, [persona])
 
   return (
-    <>
+    <ThemeProvider theme={appTheme(theme)}>
+      <CssBaseline />
       {inputGlobalStyles(appTheme(theme))}
       <Navbar showSettings={settingsOpen} setShowSettings={setSettingsOpen}>
         <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
           {persona}
         </Typography>
-        <IconButton color="inherit">
-          <Icon>flare</Icon>
+        <IconButton
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
+          <Icon>{theme === 'dark' ? 'light_mode' : 'dark_mode'}</Icon>
         </IconButton>
       </Navbar>
       <Container maxWidth="xl">
@@ -37,7 +47,7 @@ function App() {
           personaText={personaText}
         />
       </Container>
-    </>
+    </ThemeProvider>
   )
 }
 
