@@ -95,7 +95,7 @@ interface PromptControllerProps {
   personaText: string
   setThreadSize: (value: number) => void
   threadSize: number
-  reset: () => void
+  clickReset: (e) => void
   showSettings: boolean
 }
 const PromptController = ({
@@ -111,7 +111,7 @@ const PromptController = ({
   personaText,
   setThreadSize,
   threadSize,
-  reset,
+  clickReset,
   showSettings,
 }: PromptControllerProps) => {
   const personasArray = Object.entries(PERSONAS)
@@ -191,7 +191,7 @@ const PromptController = ({
       </form>
       <Button
         title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
-        onClick={reset}
+        onClick={clickReset}
         sx={{
           width: '100%',
         }}

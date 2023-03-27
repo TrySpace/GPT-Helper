@@ -73,9 +73,9 @@ const Home = ({
     })
   }
 
-  const reset = () => {
+  const clickReset = () => {
     setChatResponse([])
-    setConversation('')
+    setConversation([])
     localStorage.removeItem('conversation')
   }
 
@@ -109,7 +109,7 @@ const Home = ({
           </Stack>
           <PromptController
             {...{
-              reset,
+              clickReset,
               tokens,
               nucleus,
               personaText,
