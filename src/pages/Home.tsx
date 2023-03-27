@@ -12,7 +12,7 @@ import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
 import { Persona } from '../config/personas'
-import { useChatResponse, useThreadedConversation } from '../hooks/conversation'
+import { useLocalStorage, useThreadedConversation } from '../hooks/conversation'
 import useAppStore from '../store/appstore'
 import usePromptControllerStore from '../store/prompt'
 
@@ -41,7 +41,8 @@ const Home = ({
   )
 
   // Values for Response
-  const [chatResponse, setChatResponse] = useChatResponse('conversation')
+  const [chatResponse, setChatResponse] =
+    useLocalStorage<ChatResponse>('conversation')
 
   const onSubmit = async (event, question) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call

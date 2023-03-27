@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react'
 import { ChatResponse } from '../components/ChatResponse';
 
-export const useChatResponse = (localStorageKey: string, chatResponse?: ChatResponse[]): [
-  ChatResponse[],
-  React.Dispatch<React.SetStateAction<ChatResponse[]>>
+export const useLocalStorage = <T>(localStorageKey: string, data?: T[]): [
+  T[],
+  React.Dispatch<React.SetStateAction<T[]>>
 ] => {
-  const [conversation, setConversation] = useState<ChatResponse[]>(() => {
-    const storedConversation = localStorage.getItem(localStorageKey);
-    if (storedConversation) {
-      return JSON.parse(storedConversation) as ChatResponse[]
-    } else if (chatResponse) {
-      return chatResponse;
+  const [storage, setStorage] = useState<T[]>(() => {
+    const storageItem = localStorage.getItem(localStorageKey);
+    if (storageItem) {
+      return JSON.parse(storageItem) as T[]
+    } else if (data) {
+      return data;
     } else {
       return [];
     }
   });
 
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(conversation));
-  }, [conversation, localStorageKey]);
+    localStorage.setItem(localStorageKey, JSON.stringify(storage));
+  }, [storage, localStorageKey]);
 
-  return [conversation, setConversation];
+  return [storage, setStorage];
 };
 
 export const useThreadedConversation = (
@@ -28,7 +28,7 @@ export const useThreadedConversation = (
   threadSize: number
 ): [string[], React.Dispatch<React.SetStateAction<string[]>>] => {
   const [conversation, setConversation] = useState<string[]>([]);
-  const [convoStore, setConvoStore] = useChatResponse('conversation', chatResponse);
+  const [convoStore, setConvoStore] = useLocalStorage<ChatResponse>('conversation', chatResponse);
 
   useEffect(() => {
     const latestChatResponses = convoStore.slice(-threadSize);

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import { useChatResponse, useThreadedConversation } from './conversation'
+import { useLocalStorage, useThreadedConversation } from './conversation'
 import { ChatResponse } from '../components/ChatResponse'
 
 
@@ -87,7 +87,7 @@ describe('useChatResponse', () => {
   });
 
   it('should return an empty conversation array by default', () => {
-    const { result } = renderHook(() => useChatResponse(localStorageKey));
+    const { result } = renderHook(() => useLocalStorage(localStorageKey));
 
     expect(result.current[0]).toEqual([]);
   });
@@ -101,7 +101,7 @@ describe('useChatResponse', () => {
       },
     ];
 
-    const { result } = renderHook(() => useChatResponse(localStorageKey, chatResponse));
+    const { result } = renderHook(() => useLocalStorage(localStorageKey, chatResponse));
 
     expect(result.current[0]).toEqual(chatResponse);
   });
@@ -115,7 +115,7 @@ describe('useChatResponse', () => {
       },
     ];
 
-    const { result } = renderHook(() => useChatResponse(localStorageKey, chatResponse));
+    const { result } = renderHook(() => useLocalStorage(localStorageKey, chatResponse));
 
     expect(localStorage.getItem(localStorageKey)).toEqual(JSON.stringify(chatResponse));
 
