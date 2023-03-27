@@ -10,7 +10,7 @@ export interface ChatResponse {
   totalTokens?: string
 }
 
-const ChatResponse: React.FC<ChatResponse> = ({
+export const ChatResponse: React.FC<ChatResponse> = ({
   botResponse,
   promptQuestion,
   totalTokens,
@@ -51,4 +51,4 @@ const ChatResponse: React.FC<ChatResponse> = ({
   )
 }
 
-export default ChatResponse
+// export default ChatResponse

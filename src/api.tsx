@@ -39,6 +39,15 @@ interface Choice {
   }
 }
 
+interface ErrorResponse {
+  data?: {
+    error?: {
+      message?: string
+      code?: number
+    }
+  }
+}
+
 export async function useGPTApi({
   question,
   chatResponse,
@@ -101,7 +110,8 @@ export async function useGPTApi({
       return { chatResponse: [...chatResponse, newChat] }
     } catch (err) {
       // @ts-ignore
-      return { error: err?.response?.data?.error.message }
+      const errorResponse = err?.response as ErrorResponse
+      return { error: errorResponse.data?.error?.message }
     }
   } else {
     const promptOptions = `Respond in markdown and use a codeblock with the language if there is code. ${personaText} STOP `
@@ -123,19 +133,16 @@ export async function useGPTApi({
         promptData,
         options
       )
-      console.log(`🚀 ~ onSubmit ~ response:`, response)
       const newChat: ChatResponse = {
         botResponse: response.data.choices[0].text,
         promptQuestion: question,
         totalTokens: response.data.usage.total_tokens,
       }
-      console.log(`🚀 ~ onSubmit ~ newChat:`, newChat)
-
       return { chatResponse: [...chatResponse, newChat] }
     } catch (err) {
       // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      return { error: err?.response?.data?.error.message }
+      const errorResponse = err?.response as ErrorResponse
+      return { error: errorResponse?.data?.error?.message }
     }
   }
 }

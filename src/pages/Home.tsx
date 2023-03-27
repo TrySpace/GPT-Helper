@@ -9,7 +9,7 @@ import { useGPTApi } from '../api'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
-import ChatResponse from '../components/ChatResponse'
+import { ChatResponse } from '../components/ChatResponse'
 import { Persona } from '../config/personas'
 import { useChatResponse, useThreadedConversation } from '../hooks/conversation'
 
