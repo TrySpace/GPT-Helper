@@ -1,4 +1,4 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile. It was mostly modified using GPT prompts.
 
 ## GPT Helper
 
@@ -26,23 +26,19 @@ You will need to setup a .env file in the client directory. Make sure the file i
 REACT_APP_OPENAI_KEY=yourkey
 ```
 
-Then run `npm start` inside the root directory. It should automatically open the page on port `3000`
+Then run `npm start`, it should automatically open the page on port `3000`
 
-### Personas
+## Configure Personas
 
 You can edit `./config/personas.ts`
 
-### Customize
-
-Change `mode` to `light` in `index.tsx` for light mode
-
-## Todos
+### Todos
 
 - ~Nicer loading~
 - Better prompt insight
 - ~Toggle dark/light theme~
 - ~Make PromptController into sidebar~ or popover
-- Remember last persona & model
+- ~Remember last persona & model~
 - Local persona edit
 - Tweak Response component layout?
 - Fix build not resolving correct paths
