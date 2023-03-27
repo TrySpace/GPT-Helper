@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ChatResponse } from './hooks/conversation'
+import { ChatResponse } from './components/ChatResponse'
 
 interface PromptData {
   model: string

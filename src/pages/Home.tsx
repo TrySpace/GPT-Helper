@@ -9,7 +9,7 @@ import { useGPTApi } from '../api'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
-import Response from '../components/Response'
+import ChatResponse from '../components/ChatResponse'
 import { Persona } from '../config/personas'
 import { useChatResponse, useThreadedConversation } from '../hooks/conversation'
 
@@ -104,7 +104,7 @@ const Home = ({
           <Stack spacing={1}>
             {chatResponse &&
               chatResponse.map((item, index) => (
-                <Response {...item} key={index} />
+                <ChatResponse {...item} key={index} />
               ))}
           </Stack>
           <PromptController

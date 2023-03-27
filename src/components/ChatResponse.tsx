@@ -4,9 +4,13 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { Card, Divider, Stack, Typography } from '@mui/material'
 
-import { ChatResponse } from '../hooks/conversation'
+export interface ChatResponse {
+  botResponse: string
+  promptQuestion: string
+  totalTokens?: string
+}
 
-const Response: React.FC<ChatResponse> = ({
+const ChatResponse: React.FC<ChatResponse> = ({
   botResponse,
   promptQuestion,
   totalTokens,
@@ -47,4 +51,4 @@ const Response: React.FC<ChatResponse> = ({
   )
 }
 
-export default Response
+export default ChatResponse
