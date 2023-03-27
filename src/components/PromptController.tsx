@@ -112,13 +112,10 @@ const PromptController = ({
   } = useStore(usePromptControllerStore)
 
   return (
-    <Card
-      className={`${showSettings ? 'settings' : 'settings hide'}`}
+    <Stack
+      spacing={2}
       sx={{
-        overflowY: 'scroll',
-        maxHeight: '80vh',
-        maxWidth: '90vw',
-        p: 1,
+        overflowY: 'auto',
       }}
     >
       <Stack>
@@ -138,53 +135,50 @@ const PromptController = ({
         })}
       </Stack>
 
-      <form>
-        <Stack spacing={1}>
-          <ModelSelect
-            selectedModel={selectedModel}
-            setSelectedModel={setSelectedModel}
-          />
-          <InputLabel htmlFor="temperature">{`Temperature: ${temperature}`}</InputLabel>
-          <RangeComponent
-            name="temperature"
-            value={temperature}
-            min="0"
-            max="1"
-            step=".1"
-            onChange={(event) => setTemperature(Number(event.target.value))}
-            title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
-          />
-          <InputLabel>{`Diversity: ${nucleus}`}</InputLabel>
-          <RangeComponent
-            name="top_p"
-            value={nucleus}
-            min="0"
-            max="1"
-            step=".1"
-            onChange={(event) => setNucleus(Number(event.target.value))}
-            title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
-          />
-          <InputLabel>{`Max Tokens: ${tokens}`}</InputLabel>
-          <RangeComponent
-            name="tokens"
-            value={tokens}
-            min="5"
-            max="2048"
-            onChange={(event) => setTokens(Number(event.target.value))}
-            title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
-          />
-          <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>
-          <RangeComponent
-            name="tokens"
-            value={threadSize}
-            min="1"
-            max="10"
-            step="1"
-            onChange={(event) => setThreadSize(Number(event.target.value))}
-            title="Sets the max thread size. This will set how large the chat bots memory can be."
-          />
-        </Stack>
-      </form>
+      <ModelSelect
+        selectedModel={selectedModel}
+        setSelectedModel={setSelectedModel}
+      />
+      <InputLabel htmlFor="temperature">{`Temperature: ${temperature}`}</InputLabel>
+      <RangeComponent
+        name="temperature"
+        value={temperature}
+        min="0"
+        max="1"
+        step=".1"
+        onChange={(event) => setTemperature(Number(event.target.value))}
+        title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
+      />
+      <InputLabel>{`Diversity: ${nucleus}`}</InputLabel>
+      <RangeComponent
+        name="top_p"
+        value={nucleus}
+        min="0"
+        max="1"
+        step=".1"
+        onChange={(event) => setNucleus(Number(event.target.value))}
+        title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
+      />
+      <InputLabel>{`Max Tokens: ${tokens}`}</InputLabel>
+      <RangeComponent
+        name="tokens"
+        value={tokens}
+        min="5"
+        max="2048"
+        onChange={(event) => setTokens(Number(event.target.value))}
+        title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
+      />
+      <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>
+      <RangeComponent
+        name="tokens"
+        value={threadSize}
+        min="1"
+        max="10"
+        step="1"
+        onChange={(event) => setThreadSize(Number(event.target.value))}
+        title="Sets the max thread size. This will set how large the chat bots memory can be."
+      />
+
       <Button
         title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
         onClick={clickReset}
@@ -194,7 +188,7 @@ const PromptController = ({
       >
         Reset
       </Button>
-    </Card>
+    </Stack>
   )
 }
 

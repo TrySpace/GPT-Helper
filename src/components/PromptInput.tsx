@@ -7,6 +7,7 @@ import {
   IconButton,
   TextField,
 } from '@mui/material'
+import { drawerWidth } from './Drawer'
 
 interface PromptInputProps {
   onSubmit: (question: string) => Promise<void>
@@ -49,15 +50,13 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 'large',
-        position: 'fixed',
+        position: 'absolute',
         bottom: 0,
-        left: 0,
-        width: '100%',
+        left: { sm: `${drawerWidth}px`, xs: 0 },
+        width: { sm: `calc(100% - ${drawerWidth}px)`, xs: '100%' },
       }}
     >
       <Box
-        component="form"
-        onKeyDown={handleKeyDown}
         sx={{
           display: 'flex',
           flexDirection: 'column',

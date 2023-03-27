@@ -1,15 +1,3 @@
-/* Prompt controller classes */
-.settings {
-  position: fixed;
-  border-radius: 5px;
-  top: 11%;
-  right: 1%;
-  transition: ease all 0.5s;
-}
-.hide {
-  transform: translateY(-200%);
-}
-
 /* ╭────────────────────────────╮ */
 /* │     Mostly Prism stuff     │ */
 /* ╰────────────────────────────╯ */

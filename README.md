@@ -41,7 +41,7 @@ Change `mode` to `light` in `index.tsx` for light mode
 - Nicer loading
 - Better prompt insight
 - ~Toggle dark/light theme~
-- Make PromptController into sidebar or popover
+- ~Make PromptController into sidebar~ or popover
 - Remember last persona & model
 - Local persona edit
 - Tweak Response component layout?

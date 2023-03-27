@@ -3,11 +3,11 @@ import { useStore } from 'zustand'
 
 import { Stack } from '@mui/material'
 import Alert from '@mui/material/Alert'
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
 import { useGPTApi } from '../api'
 import { ChatResponse } from '../components/ChatResponse'
+import Drawer from '../components/Drawer'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
@@ -15,13 +15,16 @@ import { Persona } from '../config/personas'
 import { useLocalStorage, useThreadedConversation } from '../hooks/conversation'
 import useAppStore from '../store/appstore'
 import usePromptControllerStore from '../store/prompt'
+import Typography from '@mui/material/Typography'
 
 const Home = ({
   showSettings,
+  persona,
   setPersona,
   personaText,
 }: {
   showSettings: boolean
+  persona: Persona
   personaText: string
   setPersona: React.Dispatch<React.SetStateAction<Persona>> // (persona: Persona) => void
 }) => {
@@ -85,8 +88,21 @@ const Home = ({
   }, [chatResponse])
 
   return (
-    <Box sx={{}}>
-      <Grid container spacing={1} sx={{ pb: '60px' }}>
+    <Drawer
+      header={persona}
+      content={
+        <PromptController
+          {...{
+            clickReset,
+            personaText,
+            showSettings,
+            setPersona,
+            setChatResponse,
+          }}
+        />
+      }
+    >
+      <Grid container spacing={1} sx={{ pb: '60px', width: '100%' }}>
         <Grid item xs={12}>
           {showError && <Alert severity="error">{error}</Alert>}
         </Grid>
@@ -107,19 +123,10 @@ const Home = ({
                 <ChatResponse {...item} key={index} />
               ))}
           </Stack>
-          <PromptController
-            {...{
-              clickReset,
-              personaText,
-              showSettings,
-              setPersona,
-              setChatResponse,
-            }}
-          />
         </Grid>
+        <PromptInput onSubmit={onSubmit} loading={loading} />
       </Grid>
-      <PromptInput onSubmit={onSubmit} loading={loading} />
-    </Box>
+    </Drawer>
   )
 }
 

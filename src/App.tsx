@@ -10,15 +10,14 @@ import {
 } from '@mui/material'
 
 import { appTheme } from './'
-import Navbar from './components/Navbar'
 import { inputGlobalStyles } from './config/globalStyles'
 import { PERSONAS, Persona } from './config/personas'
 import Home from './pages/Home'
 import useAppStore from './store/appstore'
 
 function App() {
-  const [persona, setPersona] = useState<Persona>('default')
-  const [personaText, setPersonaText] = useState<string>(PERSONAS.default)
+  const [persona, setPersona] = useState<Persona>('Default')
+  const [personaText, setPersonaText] = useState<string>(PERSONAS.Default)
 
   const { theme, setTheme, settingsOpen, setSettingsOpen } = useAppStore()
 
@@ -30,19 +29,10 @@ function App() {
     <ThemeProvider theme={appTheme(theme)}>
       <CssBaseline />
       {inputGlobalStyles(appTheme(theme))}
-      <Navbar showSettings={settingsOpen} setShowSettings={setSettingsOpen}>
-        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-          {persona}
-        </Typography>
-        <IconButton
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        >
-          <Icon>{theme === 'dark' ? 'light_mode' : 'dark_mode'}</Icon>
-        </IconButton>
-      </Navbar>
       <Container maxWidth="xl">
         <Home
           showSettings={settingsOpen}
+          persona={persona}
           setPersona={setPersona}
           personaText={personaText}
         />
