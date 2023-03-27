@@ -1,5 +1,6 @@
 import { PaletteMode } from '@mui/material';
 import create from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 import { devtools } from 'zustand/middleware'
 
@@ -14,17 +15,20 @@ interface AppStore {
 
 export const useAppStore = create<AppStore>()(
   devtools(
-    ((set) => ({
-      theme: 'dark',
-      loading: false,
-      settingsOpen: false,
-      setTheme: (theme: PaletteMode) => set({ theme }, false, 'setTheme'),
-      setLoading: (loading: boolean) => set({ loading }, false, 'setLoading'),
-      setSettingsOpen: (open: boolean) => set({ settingsOpen: open }, false, 'setSettingsOpen'),
-    })),
-    {
-      name: 'gpt-app-store',
-    }
+    persist(
+      ((set) => ({
+        theme: 'dark',
+        loading: false,
+        settingsOpen: false,
+        setTheme: (theme: PaletteMode) => set({ theme }, false, 'setTheme'),
+        setLoading: (loading: boolean) => set({ loading }, false, 'setLoading'),
+        setSettingsOpen: (open: boolean) => set({ settingsOpen: open }, false, 'setSettingsOpen'),
+      })),
+      {
+        name: 'gpt-app-store',
+        storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+      }
+    )
   )
 )
 
