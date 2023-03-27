@@ -1,25 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-
-import CssBaseline from '@mui/material/CssBaseline'
 import './index.css'
 
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-export const theme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-  status: {
-    danger: 'fff',
-  },
-})
+import { PaletteMode } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+
+import App from './App'
+
+export const appTheme = (mode: PaletteMode = 'dark') =>
+  createTheme({
+    palette: {
+      mode,
+    },
+    // status: {
+    //   danger: 'fff',
+    // },
+  })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appTheme('dark')}>
       <CssBaseline />
       <App />
     </ThemeProvider>

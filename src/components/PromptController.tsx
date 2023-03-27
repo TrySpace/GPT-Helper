@@ -14,6 +14,8 @@ import PersonaOption from './PersonaOption'
 
 import React, { ChangeEvent } from 'react'
 import { Persona, PERSONAS } from '../config/personas'
+import usePromptControllerStore from '../store/prompt'
+import { useStore } from 'zustand'
 
 interface InputProps {
   name: string
@@ -83,38 +85,32 @@ const ModelSelect = ({
 }
 
 interface PromptControllerProps {
-  temperature: number
-  setTemperature: React.Dispatch<React.SetStateAction<number>>
-  tokens: number
-  setTokens: (value: number) => void
-  selectedModel: string
-  setSelectedModel: (value: string) => void
-  nucleus: number
-  setNucleus: React.Dispatch<React.SetStateAction<number>>
   setPersona: React.Dispatch<React.SetStateAction<Persona>>
   personaText: string
-  setThreadSize: (value: number) => void
-  threadSize: number
   clickReset: (e) => void
   showSettings: boolean
 }
 const PromptController = ({
-  temperature,
-  setTemperature,
-  tokens,
-  setTokens,
-  selectedModel,
-  setSelectedModel,
-  nucleus,
-  setNucleus,
   setPersona,
   personaText,
-  setThreadSize,
-  threadSize,
   clickReset,
   showSettings,
 }: PromptControllerProps) => {
   const personasArray = Object.entries(PERSONAS)
+
+  const {
+    temperature,
+    setTemperature,
+    tokens,
+    setTokens,
+    nucleus,
+    setNucleus,
+    selectedModel,
+    setSelectedModel,
+    threadSize,
+    setThreadSize,
+  } = useStore(usePromptControllerStore)
+
   return (
     <Card
       className={`${showSettings ? 'settings' : 'settings hide'}`}

@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
 interface NavbarProps {
-  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>
+  setShowSettings: (open: boolean) => void
   showSettings: boolean
   children: React.ReactNode
 }

@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
 
-import { Container, Typography } from '@mui/material'
+import { Container, Icon, IconButton, Typography } from '@mui/material'
 
-import { theme } from './'
+import { appTheme } from './'
 import Navbar from './components/Navbar'
 import { inputGlobalStyles } from './config/globalStyles'
+import { PERSONAS, Persona } from './config/personas'
 import Home from './pages/Home'
-import { Persona, PERSONAS } from './config/personas'
+import useAppStore from './store/appstore'
 
 function App() {
-  const [showSettings, setShowSettings] = useState(true)
   const [persona, setPersona] = useState<Persona>('default')
   const [personaText, setPersonaText] = useState<string>(PERSONAS.default)
+
+  const { theme, settingsOpen, setSettingsOpen } = useAppStore()
 
   useEffect(() => {
     setPersonaText(PERSONAS[persona])
@@ -19,18 +21,18 @@ function App() {
 
   return (
     <>
-      {inputGlobalStyles(theme)}
-      <Navbar showSettings={showSettings} setShowSettings={setShowSettings}>
+      {inputGlobalStyles(appTheme(theme))}
+      <Navbar showSettings={settingsOpen} setShowSettings={setSettingsOpen}>
         <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
           {persona}
         </Typography>
-        {/* <IconButton color="inherit">
-          <Icon>reload</Icon>
-        </IconButton> */}
+        <IconButton color="inherit">
+          <Icon>flare</Icon>
+        </IconButton>
       </Navbar>
       <Container maxWidth="xl">
         <Home
-          showSettings={showSettings}
+          showSettings={settingsOpen}
           setPersona={setPersona}
           personaText={personaText}
         />

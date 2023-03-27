@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useStore } from 'zustand'
 
 import { Stack } from '@mui/material'
 import Alert from '@mui/material/Alert'
@@ -6,12 +7,14 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
 import { useGPTApi } from '../api'
+import { ChatResponse } from '../components/ChatResponse'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput from '../components/PromptInput'
-import { ChatResponse } from '../components/ChatResponse'
 import { Persona } from '../config/personas'
 import { useChatResponse, useThreadedConversation } from '../hooks/conversation'
+import useAppStore from '../store/appstore'
+import usePromptControllerStore from '../store/prompt'
 
 const Home = ({
   showSettings,
@@ -22,16 +25,14 @@ const Home = ({
   personaText: string
   setPersona: React.Dispatch<React.SetStateAction<Persona>> // (persona: Persona) => void
 }) => {
-  const [loading, setLoading] = useState(false)
+  const { loading, setLoading } = useAppStore()
   const [showError, setShowError] = useState(false)
   const [error, setError] = useState('')
 
-  // Values for PromptController
-  const [temperature, setTemperature] = useState(0.5)
-  const [tokens, setTokens] = useState(512)
-  const [nucleus, setNucleus] = useState(0.5)
-  const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo')
-  const [threadSize, setThreadSize] = useState(3)
+  // Values from PromptController
+  const { temperature, tokens, nucleus, selectedModel, threadSize } = useStore(
+    usePromptControllerStore
+  )
 
   // Values for Conversation
   const [conversation, setConversation] = useThreadedConversation(
@@ -110,20 +111,10 @@ const Home = ({
           <PromptController
             {...{
               clickReset,
-              tokens,
-              nucleus,
               personaText,
-              threadSize,
               showSettings,
-              setTokens,
-              setNucleus,
               setPersona,
-              temperature,
-              setThreadSize,
-              setTemperature,
               setChatResponse,
-              selectedModel,
-              setSelectedModel,
             }}
           />
         </Grid>
