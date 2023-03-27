@@ -122,7 +122,7 @@ const Home = ({
           )}
         </Grid>
         <Grid item xs={12}>
-          <Stack spacing={1}>
+          <Stack spacing={2}>
             {chatResponse &&
               chatResponse.map((item, index) => (
                 <ChatResponse {...item} key={index} />

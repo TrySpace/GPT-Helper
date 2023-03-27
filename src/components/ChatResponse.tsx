@@ -19,14 +19,14 @@ export const ChatResponse: React.FC<ChatResponse> = ({
 }) => {
   const { theme } = useAppStore()
   return (
-    <Card sx={{ p: 1 }}>
+    <Card sx={{ px: 2, pt: 2, pb: 1 }}>
       <Stack direction="row" flexWrap="wrap" justifyContent="space-between">
         <Typography variant="body1">You: {promptQuestion}</Typography>
         <Typography variant="caption" title="Total token cost">
           {totalTokens}
         </Typography>
       </Stack>
-      <Divider sx={{ py: 1 }} />
+      <Divider sx={{ mt: 1 }} />
 
       <ReactMarkdown
         children={botResponse}
@@ -57,7 +57,7 @@ export const ChatResponseLoading: React.FC<{ promptQuestion: string }> = ({
   promptQuestion,
 }) => {
   return (
-    <Card sx={{ px: 1, pt: 1 }}>
+    <Card sx={{ px: 2, pt: 2, pb: 1 }}>
       <Stack
         direction="column"
         flexWrap="wrap"
