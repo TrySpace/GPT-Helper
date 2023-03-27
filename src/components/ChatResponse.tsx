@@ -2,8 +2,9 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark, prism } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-import { Card, Divider, Stack, Typography } from '@mui/material'
+import { Card, Divider, Skeleton, Stack, Typography } from '@mui/material'
 import useAppStore from '../store/appstore'
+import Box from '@mui/material/Box'
 
 export interface ChatResponse {
   botResponse: string
@@ -49,6 +50,26 @@ export const ChatResponse: React.FC<ChatResponse> = ({
           },
         }}
       />
+    </Card>
+  )
+}
+export const ChatResponseLoading: React.FC<{ promptQuestion: string }> = ({
+  promptQuestion,
+}) => {
+  return (
+    <Card sx={{ px: 1, pt: 1 }}>
+      <Stack
+        direction="column"
+        flexWrap="wrap"
+        justifyContent="space-between"
+        sx={{ width: '100%' }}
+      >
+        <Typography variant="body1">You: {promptQuestion}</Typography>
+        <Divider sx={{ mt: 1 }} />
+        <Typography component="div" variant="body1">
+          <Skeleton sx={{ height: '80px' }} />
+        </Typography>
+      </Stack>
     </Card>
   )
 }

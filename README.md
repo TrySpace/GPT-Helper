@@ -38,7 +38,7 @@ Change `mode` to `light` in `index.tsx` for light mode
 
 ## Todos
 
-- Nicer loading
+- ~Nicer loading~
 - Better prompt insight
 - ~Toggle dark/light theme~
 - ~Make PromptController into sidebar~ or popover

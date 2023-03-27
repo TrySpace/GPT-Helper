@@ -6,7 +6,7 @@ import Alert from '@mui/material/Alert'
 import Grid from '@mui/material/Grid'
 
 import { useGPTApi } from '../api'
-import { ChatResponse } from '../components/ChatResponse'
+import { ChatResponse, ChatResponseLoading } from '../components/ChatResponse'
 import Drawer from '../components/Drawer'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
@@ -26,6 +26,7 @@ const Home = ({
 }) => {
   const { loading, setLoading } = useAppStore()
   const [showError, setShowError] = useState(false)
+  const [q, setQ] = useState('')
   const [error, setError] = useState('')
 
   // Values from PromptController
@@ -52,6 +53,7 @@ const Home = ({
 
   const onSubmit = async (question: string) => {
     setLoading(true)
+    setQ(question)
 
     const gpt = useGPTApi({
       question,
@@ -125,6 +127,7 @@ const Home = ({
               chatResponse.map((item, index) => (
                 <ChatResponse {...item} key={index} />
               ))}
+            {loading && <ChatResponseLoading promptQuestion={q} />}
           </Stack>
         </Grid>
         <PromptInput onSubmit={onSubmit} loading={loading} />
