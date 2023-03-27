@@ -1,6 +1,28 @@
 import { useState, useEffect } from 'react'
 import { ChatResponse } from '../components/ChatResponse';
 
+export const useChatResponse = (localStorageKey: string, chatResponse?: ChatResponse[]): [
+  ChatResponse[],
+  React.Dispatch<React.SetStateAction<ChatResponse[]>>
+] => {
+  const [conversation, setConversation] = useState<ChatResponse[]>(() => {
+    const storedConversation = localStorage.getItem(localStorageKey);
+    if (storedConversation) {
+      return JSON.parse(storedConversation) as ChatResponse[]
+    } else if (chatResponse) {
+      return chatResponse;
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(conversation));
+  }, [conversation, localStorageKey]);
+
+  return [conversation, setConversation];
+};
+
 export const useThreadedConversation = (
   chatResponse: ChatResponse[],
   threadSize: number
@@ -21,24 +43,3 @@ export const useThreadedConversation = (
   return [conversation, setConversation];
 };
 
-export const useChatResponse = (localStorageKey: string, chatResponse?: ChatResponse[]): [
-  ChatResponse[],
-  React.Dispatch<React.SetStateAction<ChatResponse[]>>
-] => {
-  const [conversation, setConversation] = useState<ChatResponse[]>(() => {
-    const storedConversation = localStorage.getItem(localStorageKey);
-    if (storedConversation) {
-      return JSON.parse(storedConversation);
-    } else if (chatResponse) {
-      return chatResponse;
-    } else {
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(conversation));
-  }, [conversation, localStorageKey]);
-
-  return [conversation, setConversation];
-};

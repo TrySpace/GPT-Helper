@@ -23,7 +23,9 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
     if (event.keyCode === 13 && !event.shiftKey) {
       event.preventDefault()
       setRows(1)
-      onSubmit(event, question)
+      onSubmit(event, question).catch((err) => {
+        console.error(err)
+      })
       setQuestion('')
     }
   }
