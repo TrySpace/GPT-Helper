@@ -85,13 +85,11 @@ const ModelSelect = ({
 }
 
 interface PromptControllerProps {
-  setPersona: React.Dispatch<React.SetStateAction<Persona>>
   personaText: string
   clickReset: (e) => void
   showSettings: boolean
 }
 const PromptController = ({
-  setPersona,
   personaText,
   clickReset,
   showSettings,
@@ -99,6 +97,7 @@ const PromptController = ({
   const personasArray = Object.entries(PERSONAS)
 
   const {
+    setPersona,
     temperature,
     setTemperature,
     tokens,

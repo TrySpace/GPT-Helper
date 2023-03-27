@@ -14,9 +14,11 @@ import { inputGlobalStyles } from './config/globalStyles'
 import { PERSONAS, Persona } from './config/personas'
 import Home from './pages/Home'
 import useAppStore from './store/appstore'
+import usePromptControllerStore from './store/prompt'
+import { useStore } from 'zustand'
 
 function App() {
-  const [persona, setPersona] = useState<Persona>('Default')
+  const { persona } = useStore(usePromptControllerStore)
   const [personaText, setPersonaText] = useState<string>(PERSONAS.Default)
 
   const { theme, setTheme, settingsOpen, setSettingsOpen } = useAppStore()
@@ -30,12 +32,7 @@ function App() {
       <CssBaseline />
       {inputGlobalStyles(appTheme(theme))}
       <Container maxWidth="xl">
-        <Home
-          showSettings={settingsOpen}
-          persona={persona}
-          setPersona={setPersona}
-          personaText={personaText}
-        />
+        <Home showSettings={settingsOpen} personaText={personaText} />
       </Container>
     </ThemeProvider>
   )

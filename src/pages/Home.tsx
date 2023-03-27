@@ -19,23 +19,26 @@ import Typography from '@mui/material/Typography'
 
 const Home = ({
   showSettings,
-  persona,
-  setPersona,
   personaText,
 }: {
   showSettings: boolean
-  persona: Persona
   personaText: string
-  setPersona: React.Dispatch<React.SetStateAction<Persona>> // (persona: Persona) => void
 }) => {
   const { loading, setLoading } = useAppStore()
   const [showError, setShowError] = useState(false)
   const [error, setError] = useState('')
 
   // Values from PromptController
-  const { temperature, tokens, nucleus, selectedModel, threadSize } = useStore(
-    usePromptControllerStore
-  )
+  const {
+    persona,
+    setPersona,
+    temperature,
+    tokens,
+    nucleus,
+    selectedModel,
+    threadSize,
+    resetPromptSettings,
+  } = useStore(usePromptControllerStore)
 
   // Values for Conversation
   const [conversation, setConversation] = useThreadedConversation(
@@ -80,6 +83,7 @@ const Home = ({
     setChatResponse([])
     setConversation([])
     localStorage.removeItem('conversation')
+    resetPromptSettings()
   }
 
   // Scrolls to bottom of the page as new content is created
@@ -96,7 +100,6 @@ const Home = ({
             clickReset,
             personaText,
             showSettings,
-            setPersona,
             setChatResponse,
           }}
         />

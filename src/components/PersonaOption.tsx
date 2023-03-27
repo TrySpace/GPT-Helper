@@ -4,7 +4,7 @@ import { Persona } from '../config/personas'
 
 interface PersonaOptionProps {
   personaValue: string | unknown
-  setPersona: React.Dispatch<React.SetStateAction<Persona>>
+  setPersona: (persona: Persona) => void
   personaKey: string
   personaText: string
 }
