@@ -7,6 +7,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Slider,
   Stack,
   Typography,
 } from '@mui/material'
@@ -37,8 +38,7 @@ const RangeComponent = ({
   title,
 }: InputProps) => {
   return (
-    <input
-      type="range"
+    <Slider
       name={name}
       value={value}
       min={min}
@@ -46,6 +46,7 @@ const RangeComponent = ({
       step={step}
       onChange={onChange}
       title={title}
+      aria-label={title}
     />
   )
 }
