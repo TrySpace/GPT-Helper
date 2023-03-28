@@ -1,6 +1,8 @@
 node_modules
 .env
+.yarn
 .eslintrc.json
+.pnp.*
 Dockerfile
 
 /build
