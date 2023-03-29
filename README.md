@@ -23,6 +23,8 @@ It was made as a second option to ChatGPT, due to the ChatGPT often being overlo
 
 Remember this is **NOT** ChatGPT and won't work the same, you should reset the prompt when asking different questions, it is not very good at maintaining a threaded conversation.
 
+> Each additional question depending on the thread length setting will increase the token cost! So reset often!
+
 ## Install:
 
 You need an Openai account and an API key

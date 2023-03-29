@@ -1,16 +1,16 @@
 import * as React from 'react'
 
-import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
-import CssBaseline from '@mui/material/CssBaseline'
+import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import MuiDrawer from '@mui/material/Drawer'
+import Icon from '@mui/material/Icon'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Icon from '@mui/material/Icon'
+
 import useAppStore from '../store/appstore'
 
 export const drawerWidth = 240
@@ -19,10 +19,11 @@ interface Props {
   header: any
   content: any
   children: any
+  clickReset: (e) => void
 }
 
 export default function Drawer(props: Props) {
-  const { header, content, children } = props
+  const { header, content, children, clickReset } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const { theme, setTheme } = useAppStore()
@@ -33,7 +34,17 @@ export default function Drawer(props: Props) {
 
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <Button
+          title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
+          onClick={clickReset}
+          sx={{
+            width: '100%',
+          }}
+        >
+          Reset
+        </Button>
+      </Toolbar>
       <Divider />
       <List sx={{ px: 2 }}>{content}</List>
     </div>

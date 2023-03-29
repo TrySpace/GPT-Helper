@@ -11,12 +11,9 @@ import Drawer from '../components/Drawer'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
 import PromptInput, { CHAT_INPUT_HEIGHT } from '../components/PromptInput'
-import { Persona } from '../config/personas'
 import { useLocalStorage, useThreadedConversation } from '../hooks/conversation'
 import useAppStore from '../store/appstore'
 import usePromptControllerStore from '../store/prompt'
-import Typography from '@mui/material/Typography'
-import { QuestionAnswer } from '../components/QuestionAnswer'
 
 const Home = ({
   showSettings,
@@ -107,6 +104,7 @@ const Home = ({
           }}
         />
       }
+      clickReset={clickReset}
     >
       <Grid
         container

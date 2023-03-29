@@ -91,14 +91,8 @@ const ModelSelect = ({
 
 interface PromptControllerProps {
   personaText: string
-  clickReset: (e) => void
-  showSettings: boolean
 }
-const PromptController = ({
-  personaText,
-  clickReset,
-  showSettings,
-}: PromptControllerProps) => {
+const PromptController = ({ personaText }: PromptControllerProps) => {
   const personasArray = Object.entries(PERSONAS)
 
   const {
@@ -116,12 +110,7 @@ const PromptController = ({
   } = useStore(usePromptControllerStore)
 
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        overflowY: 'auto',
-      }}
-    >
+    <Stack spacing={2}>
       <Stack>
         <Typography variant="h6">Personalities</Typography>
         <Divider />
@@ -182,16 +171,6 @@ const PromptController = ({
         onChange={(event) => setThreadSize(Number(event?.target?.value))}
         title="Sets the max thread size. This will set how large the chat bots memory can be."
       />
-
-      <Button
-        title="Reset the conversation thread. As the conversation gets bigger, so will the token requirements."
-        onClick={clickReset}
-        sx={{
-          width: '100%',
-        }}
-      >
-        Reset
-      </Button>
     </Stack>
   )
 }
