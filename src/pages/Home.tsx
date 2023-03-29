@@ -16,6 +16,7 @@ import { useLocalStorage, useThreadedConversation } from '../hooks/conversation'
 import useAppStore from '../store/appstore'
 import usePromptControllerStore from '../store/prompt'
 import Typography from '@mui/material/Typography'
+import { QuestionAnswer } from '../components/QuestionAnswer'
 
 const Home = ({
   showSettings,
@@ -109,6 +110,7 @@ const Home = ({
     >
       <Grid container spacing={1} sx={{ pb: '60px', width: '100%' }}>
         <Grid item xs={12}>
+          <QuestionAnswer question="hi" answer="hello" />
           {showError && <Alert severity="error">{error}</Alert>}
         </Grid>
         <Grid item xs={12}>

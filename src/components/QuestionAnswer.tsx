@@ -11,11 +11,9 @@ interface Props {
 
 export const QuestionAnswer: React.FC<Props> = ({ question, answer }) => {
   const [questionHistory, setQuestionHistory] = useState<QuestionHistoryItem[]>(
-    [question]
+    []
   )
-  const [answerHistory, setAnswerHistory] = useState<AnswerHistoryItem[]>([
-    answer,
-  ])
+  const [answerHistory, setAnswerHistory] = useState<AnswerHistoryItem[]>([])
 
   useEffect(() => {
     if (question) {
