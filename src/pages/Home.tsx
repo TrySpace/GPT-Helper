@@ -110,7 +110,7 @@ const Home = ({
         container
         spacing={1}
         sx={{
-          pb: `calc(${CHAT_INPUT_HEIGHT} + 8px)`, // Force extra height at bottom
+          pb: `calc(${CHAT_INPUT_HEIGHT} + 12px)`, // Force extra space at bottom
           width: '100%',
         }}
       >
@@ -137,7 +137,11 @@ const Home = ({
             {loading && <ChatResponseLoading promptQuestion={q} />}
           </Stack>
         </Grid>
-        <PromptInput onSubmit={onSubmit} loading={loading} />
+        <PromptInput
+          persona={persona || selectedModel}
+          onSubmit={onSubmit}
+          loading={loading}
+        />
       </Grid>
     </Drawer>
   )

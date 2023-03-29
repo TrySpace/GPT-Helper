@@ -8,15 +8,21 @@ import {
   TextField,
 } from '@mui/material'
 import { drawerWidth } from './Drawer'
+import { Persona } from '../config/personas'
 
 export const CHAT_INPUT_HEIGHT = '60px'
 
 interface PromptInputProps {
   onSubmit: (question: string) => Promise<void>
   loading: boolean
+  persona?: Persona
 }
 
-const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
+const PromptInput: React.FC<PromptInputProps> = ({
+  onSubmit,
+  loading,
+  persona,
+}) => {
   const [rows, setRows] = useState(1)
   const [question, setQuestion] = useState('')
 
@@ -74,7 +80,7 @@ const PromptInput: React.FC<PromptInputProps> = ({ onSubmit, loading }) => {
           onChange={(event) => setQuestion(event.target.value)}
           onKeyDown={handleKeyDown}
           autoFocus
-          placeholder="Ask a question"
+          placeholder={`Ask a question to ${persona || 'GPT'}`}
           sx={{
             width: '100%',
           }}
