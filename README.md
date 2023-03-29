@@ -1,7 +1,8 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript` and uses `@mui` material design components and works on mobile. It uses `zustand` for state and local storage, `axios` for openAI requests and `react-syntax-highlighter` to format the GPT responses.
-It was largely modified using GPT/ChatGPT.
+This is a fork of [jas3333/GPT-Helper](https://github.com/jas3333/GPT-Helper) that has been updated to work with `typescript` and uses `@mui` material design components, making it mobile-friendly.
 
-### Tech
+The application uses `zustand` for state management and local storage, `axios` for openAI requests, and `react-syntax-highlighter` to format the GPT responses. The modifications are primarily made using GPT/ChatGP, including this readme.
+
+### Tech Stack
 
 - Typescript
 - @mui/material
@@ -11,8 +12,16 @@ It was largely modified using GPT/ChatGPT.
 
 ## GPT Prompt Engineer
 
-This app is an interface to the GPT3 API. **It isn't ChatGPT nor does it use the Chatgpt api**.
-It was made as a second option to ChatGPT, due to the ChatGPT often being overloaded.
+This app is an interface to the GPT API. **It isn't ChatGPT nor does it use the Chatgpt api**.
+It was was created as a backup alternative to ChatGPT, which can sometimes be overloaded.
+
+## Usage
+
+This app allows you to automatically prefix questions with your own personas/prompts using prompt-engineering techniques. Please note that this is **not** ChatGPT and won't work the same. You should reset the prompt when asking different questions, as it is not very good at maintaining a threaded conversation.
+
+It's important to note that each additional question depending on the thread length setting will increase the token cost, so resetting often is recommended.
+
+> Each additional question depending on the thread length setting will increase the token cost! So reset often!
 
 ## How to use:
 
@@ -21,15 +30,9 @@ It was made as a second option to ChatGPT, due to the ChatGPT often being overlo
 - ?
 - Profit
 
-Remember this is **NOT** ChatGPT and won't work the same, you should reset the prompt when asking different questions, it is not very good at maintaining a threaded conversation.
+## Installation:
 
-> Each additional question depending on the thread length setting will increase the token cost! So reset often!
-
-## Install:
-
-You need an Openai account and an API key
-
-git clone the repo:
+Before getting started, you will need an OpenAI account and an API key. Once you have these, you can clone the repository:
 
 ```bash
 git clone https://github.com/TrySpace/GPT-Helper
@@ -37,10 +40,9 @@ cd GPT-Helper
 npm install
 ```
 
-## Run:
+## Running the App:
 
-You will need to setup a .env file in the client directory. Make sure the file is named `.env` and nothing else.
-`something.env` will not work.
+To run the app, you will need to set up a file called `.env` the root directory.
 
 ```bash
 REACT_APP_OPENAI_KEY=yourkey
@@ -48,7 +50,7 @@ REACT_APP_OPENAI_KEY=yourkey
 
 Then run `npm start`, it should automatically open the page on port `3000`
 
-## Configure Personas
+## Configuring Personas
 
 You can edit `./config/personas.ts`
 
@@ -59,7 +61,8 @@ You can edit `./config/personas.ts`
 - ~Make PromptController into sidebar~ or popover
 - ~Remember last persona & model~
 - ~Fix Chat overflow~
-- Better prompt insight
+- Better prompt insight; Popover to see the full prefix, and for each message show the complete question.
+- Click button to copy raw response text to clipboard
 - Updating 1 Question and see the diff of the Answer
 - Local persona edit
 - Store history in localStore, move current convo before resetting
