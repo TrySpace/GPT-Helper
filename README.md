@@ -1,4 +1,4 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` material design components and works on mobile. It was largely modified using GPT prompts.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript` and uses `@mui` material design components and works on mobile. It was largely modified using GPT/ChatGPT.
 
 ## GPT Prompt Engineer
 
@@ -53,3 +53,4 @@ You can edit `./config/personas.ts`
 - Local persona edit
 - Tweak Response component layout?
 - Fix build not resolving correct paths
+- Update to GPT 4?
