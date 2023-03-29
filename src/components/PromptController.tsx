@@ -1,7 +1,8 @@
+import React, { ChangeEvent } from 'react'
+import { useStore } from 'zustand'
+
 import {
-  Box,
   Button,
-  Card,
   Divider,
   FormControl,
   InputLabel,
@@ -11,20 +12,22 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import PersonaOption from './PersonaOption'
 
-import React, { ChangeEvent } from 'react'
-import { Persona, PERSONAS } from '../config/personas'
+import { PERSONAS } from '../config/personas'
 import usePromptControllerStore from '../store/prompt'
-import { useStore } from 'zustand'
+import PersonaOption from './PersonaOption'
 
 interface InputProps {
   name: string
-  value: string | number
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  min?: string
-  max?: string
-  step?: string
+  value: number
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: number | number[],
+    activeThumb: number
+  ) => void
+  min: number
+  max: number
+  step?: number
   title?: string
 }
 
@@ -44,6 +47,7 @@ const RangeComponent = ({
       min={min}
       max={max}
       step={step}
+      // @ts-ignore
       onChange={onChange}
       title={title}
       aria-label={title}
@@ -143,39 +147,39 @@ const PromptController = ({
       <RangeComponent
         name="temperature"
         value={temperature}
-        min="0"
-        max="1"
-        step=".1"
-        onChange={(event) => setTemperature(Number(event.target.value))}
+        min={Number('0')}
+        max={Number('1')}
+        step={Number('.1')}
+        onChange={(event) => setTemperature(Number(event?.target?.value))}
         title="This will adjust the randomness of the conversation. Setting to 0 will be straightforward, setting to 1 will be more random."
       />
       <InputLabel>{`Diversity: ${nucleus}`}</InputLabel>
       <RangeComponent
         name="top_p"
         value={nucleus}
-        min="0"
-        max="1"
-        step=".1"
-        onChange={(event) => setNucleus(Number(event.target.value))}
+        min={Number('0')}
+        max={Number('1')}
+        step={Number('.1')}
+        onChange={(event) => setNucleus(Number(event?.target?.value))}
         title="The top_p parameter is used to control the diversity of the generated text. The higher the value the more diverse the generated text will be."
       />
       <InputLabel>{`Max Tokens: ${tokens}`}</InputLabel>
       <RangeComponent
         name="tokens"
         value={tokens}
-        min="5"
-        max="2048"
-        onChange={(event) => setTokens(Number(event.target.value))}
+        min={Number('5')}
+        max={Number('2048')}
+        onChange={(event) => setTokens(Number(event?.target?.value))}
         title="Sets max_token parameter in the api call. GPT will not generate more than the set tokens. This setting does not stop requests at the set tokens."
       />
       <InputLabel>{`Max Threads: ${threadSize}`}</InputLabel>
       <RangeComponent
         name="tokens"
         value={threadSize}
-        min="1"
-        max="10"
-        step="1"
-        onChange={(event) => setThreadSize(Number(event.target.value))}
+        min={Number('1')}
+        max={Number('10')}
+        step={Number('1')}
+        onChange={(event) => setThreadSize(Number(event?.target?.value))}
         title="Sets the max thread size. This will set how large the chat bots memory can be."
       />
 
