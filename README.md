@@ -1,16 +1,18 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile. It was largely modified using GPT prompts.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` material design components and works on mobile. It was largely modified using GPT prompts.
 
-## GPT Helper
+## GPT Prompt Engineer
 
 This app is an interface to the GPT3 API. **It isn't ChatGPT nor does it use the Chatgpt api**.
 It was made as a second option to ChatGPT, due to the ChatGPT often being overloaded.
 
-You can use it to:
+## How to use it:
 
 - Automatically prefix questions with your own personas/prompts
 - Prompt-engineering
 - ?
 - Profit
+
+Remember this is **NOT** ChatGPT and won't work the same, you should reset the prompt when asking different questions, it is not very good at maintaining a threaded conversation.
 
 ### To install:
 
@@ -45,6 +47,7 @@ You can edit `./config/personas.ts`
 - ~Toggle dark/light theme~
 - ~Make PromptController into sidebar~ or popover
 - ~Remember last persona & model~
+- Fix Chat overflow
 - Better prompt insight
 - Updating 1 Question and see the diff of the Answer
 - Local persona edit

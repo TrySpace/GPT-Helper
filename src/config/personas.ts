@@ -3,7 +3,7 @@ export type Persona = keyof typeof PERSONAS;
 
 // Prefixes
 const MARKDOWN = `Using markdown, highlightinging important words, concepts and aspects`
-const MARKDOWN_AND_BULLETPOINTS = `Using markdown and bulletpoints, highlighting the most important words, concepts and aspects`
+const MARKDOWN_AND_BULLETPOINTS = `Using markdown and bulletpoints, highlighting the most important words, concepts and aspects in the sentences where needed`
 
 // Suffixes
 const ANSWER = `Answer the following question: `
@@ -16,6 +16,7 @@ export const PERSONAS = {
   Summary: `${MARKDOWN_AND_BULLETPOINTS}, give a summary of the following:`,
   Etymology: `${MARKDOWN_AND_BULLETPOINTS}, give me the etymological origin of the following word(s):`,
   Markdown: `${MARKDOWN_AND_BULLETPOINTS}, answer the following question:`,
+  Create: `Create a new`,
   Journalist:
     `Your name is Matt, you are a world renowned but controversial journalist and enjoy writing high quality articles based on verified information. ${ANSWER}`,
   Story: 'As a story teller, you continue the story from the previous to the current, with the following prompt:',
