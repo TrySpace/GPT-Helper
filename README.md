@@ -1,11 +1,20 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript` and uses `@mui` material design components and works on mobile. It was largely modified using GPT/ChatGPT.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript` and uses `@mui` material design components and works on mobile. It uses `zustand` for state and local storage, `axios` for openAI requests and `react-syntax-highlighter` to format the GPT responses.
+It was largely modified using GPT/ChatGPT.
+
+### Tech
+
+- Typescript
+- @mui/material
+- Zustand
+- Axios
+- react-syntax-highlighter
 
 ## GPT Prompt Engineer
 
 This app is an interface to the GPT3 API. **It isn't ChatGPT nor does it use the Chatgpt api**.
 It was made as a second option to ChatGPT, due to the ChatGPT often being overloaded.
 
-## How to use it:
+## How to use:
 
 - Automatically prefix questions with your own personas/prompts
 - Prompt-engineering
@@ -14,24 +23,24 @@ It was made as a second option to ChatGPT, due to the ChatGPT often being overlo
 
 Remember this is **NOT** ChatGPT and won't work the same, you should reset the prompt when asking different questions, it is not very good at maintaining a threaded conversation.
 
-### To install:
+## Install:
 
 You need an Openai account and an API key
 
 git clone the repo:
 
-```
+```bash
 git clone https://github.com/TrySpace/GPT-Helper
 cd GPT-Helper
 npm install
 ```
 
-### To run:
+## Run:
 
 You will need to setup a .env file in the client directory. Make sure the file is named `.env` and nothing else.
 `something.env` will not work.
 
-```
+```bash
 REACT_APP_OPENAI_KEY=yourkey
 ```
 
