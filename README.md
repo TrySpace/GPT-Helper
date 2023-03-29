@@ -1,19 +1,21 @@
+# GPT Prompt Engineer
+
 This is a fork of [jas3333/GPT-Helper](https://github.com/jas3333/GPT-Helper) that has been updated to work with `typescript` and uses `@mui` material design components, making it mobile-friendly.
 
-The application uses `zustand` for state management and local storage, `axios` for openAI requests, and `react-syntax-highlighter` to format the GPT responses. The modifications are primarily made using GPT/ChatGP, including this readme.
+The application uses `zustand` for state management and local storage, `axios` for openAI requests, and `react-syntax-highlighter` & `react-syntax-markdown` to format the GPT responses. The modifications are primarily made using GPT/ChatGP, including this readme.
 
-### Tech Stack
+## Warning!
+
+This app is an _interface to the GPT API_. It is **not** ChatGPT **nor** does it use the ChatGPT API.
+It is created as a backup alternative to ChatGPT, which can sometimes be overloaded.
+
+## Tech Stack
 
 - Typescript
 - @mui/material
 - Zustand
 - Axios
-- react-syntax-highlighter
-
-## GPT Prompt Engineer
-
-This app is an interface to the GPT API. **It isn't ChatGPT nor does it use the Chatgpt api**.
-It was was created as a backup alternative to ChatGPT, which can sometimes be overloaded.
+- react-syntax-highlighter & react-syntax-markdown
 
 ## Usage
 
@@ -23,14 +25,14 @@ It's important to note that each additional question depending on the thread len
 
 > Each additional question depending on the thread length setting will increase the token cost! So reset often!
 
-## How to use:
+### How to use
 
 - Automatically prefix questions with your own personas/prompts
 - Prompt-engineering
 - ?
 - Profit
 
-## Installation:
+### Installation
 
 Before getting started, you will need an OpenAI account and an API key. Once you have these, you can clone the repository:
 
@@ -40,7 +42,7 @@ cd GPT-Helper
 npm install
 ```
 
-## Running the App:
+### Running the App
 
 To run the app, you will need to set up a file called `.env` the root directory.
 
