@@ -56,7 +56,7 @@ You can edit `./config/personas.ts`
 - ~Toggle dark/light theme~
 - ~Make PromptController into sidebar~ or popover
 - ~Remember last persona & model~
-- Fix Chat overflow
+- ~Fix Chat overflow~
 - Better prompt insight
 - Updating 1 Question and see the diff of the Answer
 - Local persona edit

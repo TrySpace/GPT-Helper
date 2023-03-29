@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useStore } from 'zustand'
 
-import {
-  Container,
-  CssBaseline,
-  Icon,
-  IconButton,
-  ThemeProvider,
-  Typography,
-} from '@mui/material'
+import { Container, CssBaseline, ThemeProvider } from '@mui/material'
 
 import { appTheme } from './'
 import { inputGlobalStyles } from './config/globalStyles'
-import { PERSONAS, Persona } from './config/personas'
+import { PERSONAS } from './config/personas'
 import Home from './pages/Home'
 import useAppStore from './store/appstore'
 import usePromptControllerStore from './store/prompt'
-import { useStore } from 'zustand'
 
 function App() {
   const { persona } = useStore(usePromptControllerStore)

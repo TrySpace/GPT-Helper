@@ -10,7 +10,7 @@ import { ChatResponse, ChatResponseLoading } from '../components/ChatResponse'
 import Drawer from '../components/Drawer'
 import Error from '../components/Error'
 import PromptController from '../components/PromptController'
-import PromptInput from '../components/PromptInput'
+import PromptInput, { CHAT_INPUT_HEIGHT } from '../components/PromptInput'
 import { Persona } from '../config/personas'
 import { useLocalStorage, useThreadedConversation } from '../hooks/conversation'
 import useAppStore from '../store/appstore'
@@ -108,7 +108,14 @@ const Home = ({
         />
       }
     >
-      <Grid container spacing={1} sx={{ pb: '60px', width: '100%' }}>
+      <Grid
+        container
+        spacing={1}
+        sx={{
+          pb: `calc(${CHAT_INPUT_HEIGHT} + 8px)`, // Force extra height at bottom
+          width: '100%',
+        }}
+      >
         <Grid item xs={12}>
           {/* <QuestionAnswer question="hi" answer="hello" /> */}
           {showError && <Alert severity="error">{error}</Alert>}
