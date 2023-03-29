@@ -62,6 +62,7 @@ You can edit `./config/personas.ts`
 - Better prompt insight
 - Updating 1 Question and see the diff of the Answer
 - Local persona edit
+- Store history in localStore, move current convo before resetting
 - Tweak Response component layout?
-- Fix build not resolving correct paths
 - Update to GPT 4?
+- Fix build not resolving correct paths
