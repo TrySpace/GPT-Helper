@@ -1,13 +1,20 @@
-This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile. It was mostly modified using GPT prompts.
+This is a fork of: https://github.com/jas3333/GPT-Helper and is updated to work with `typescript`, uses `@mui` components and works on mobile. It was largely modified using GPT prompts.
 
 ## GPT Helper
 
-This app is an interface to the GPT3 API. It isn't Chatgpt nor does it use the Chatgpt api.
-I made it as a second option due to the amount of errors and issues Chatgpt was having.
+This app is an interface to the GPT3 API. **It isn't ChatGPT nor does it use the Chatgpt api**.
+It was made as a second option to ChatGPT, due to the ChatGPT often being overloaded.
 
-In order to use it, you will need an Openai account and an API key.
+You can use it to:
+
+- Automatically prefix questions with your own personas/prompts
+- Prompt-engineering
+- ?
+- Profit
 
 ### To install:
+
+You need an Openai account and an API key
 
 git clone the repo:
 
@@ -35,10 +42,11 @@ You can edit `./config/personas.ts`
 ### Todos
 
 - ~Nicer loading~
-- Better prompt insight
 - ~Toggle dark/light theme~
 - ~Make PromptController into sidebar~ or popover
 - ~Remember last persona & model~
+- Better prompt insight
+- Updating 1 Question and see the diff of the Answer
 - Local persona edit
 - Tweak Response component layout?
 - Fix build not resolving correct paths

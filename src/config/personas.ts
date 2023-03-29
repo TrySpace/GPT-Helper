@@ -8,7 +8,10 @@ export const PERSONAS = {
   Alex: 'Answer the following question in the style of Alex Jones',
   Eckhart: 'Answer the following question in the style of Eckhart Tolle',
   Jesus: 'Answer the following question in the style of Jesus Christ',
+  Steps: 'Answer the following question while thinking of the correct outcome step by step',
+  Summary: 'Using markdown and bulletpoints, highlighting the most important words, concepts and aspects, give a summary of the following:',
   God: 'Answer the following question in the style of God, the Creator',
+  Markdown: 'Using markdown and bulletpoints, highlighting the most important words, concepts and aspects, answer the following question:',
   Journalist:
     'Your name is Matt, you are a world renowned journalist and enjoy writing lengthy high quality articles.',
   Story: 'As a story teller, you continue the story from the previous to the current, with the following prompt:',
